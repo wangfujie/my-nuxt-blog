@@ -1,0 +1,21 @@
+{
+  "name": "my-nuxt-blog",
+  "version": "1.0.0",
+  "description": "my blog by nuxt.js",
+  "author": "wangfj",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "cross-env": "^5.2.0",
+    "nuxt": "^2.3.4",
+    "element-ui": "^2.4.11"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  }
+}
