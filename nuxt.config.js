@@ -2,6 +2,11 @@ const pkg = require('./package')
 
 
 module.exports = {
+
+  env:{
+    baseUrl: process.env.baseUrl
+  },
+
   mode: 'spa',
 
   /*
@@ -37,15 +42,36 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '@/plugins/element-ui'
+    '@/plugins/element-ui',
+    {
+      src:'~/plugins/axios'
+    }
   ],
 
   /*
   ** Nuxt.js modules
   */
   modules: [
+    '@nuxtjs/axios',
+    '@nuxtjs/proxy' //添加proxy模块
   ],
 
+  axios: {
+    proxy: true, // 开启proxy
+    credentials: true
+  },
+
+  proxy: [
+    [
+      '/api', 
+      { 
+        target: 'https://blog.wwolf.wang', 
+        // target: 'http://localhost:8011', 
+        changeOrigin: true,
+        pathRewrite: { '^/api' : '/' }  //重定向请求路径，防止路由、api路径的冲突
+      }
+    ]
+  ],
   /*
   ** Build configuration
   */

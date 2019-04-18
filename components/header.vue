@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="headerMenu">
         <div class="logo">
             <h1><nuxt-link to="/">Mr · 王</nuxt-link></h1>
             <span>路漫漫其修远兮，吾将上下而求索。</span>
@@ -7,15 +7,46 @@
         <nav>
             <h2 id="mnavh"><span class="navicon"></span></h2>
             <ul id="starlist">
-                <li><nuxt-link to="/">首页</nuxt-link></li>
+                <li><a href="/">首页</a></li>
+                <li v-for="head in headMenu" :key="head">
+                    <a :href="head.linkUrl">{{ head.categoryName }}</a>
+                    <ul v-if="head.subNodeList != null" class="sub">
+                        <li v-for="subNode in head.subNodeList" :key="subNode"><a :href="subNode.linkUrl">{{ subNode.categoryName }}</a></li>
+                    </ul>
+                </li>
             </ul>
         </nav>
     </div>
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
-  
+    data(){
+        return{
+            headMenu:[]
+        };
+    },
+    methods:{
+        initInfo:function () {
+            var self = this;
+
+            //获取公共头菜单列表
+            axios.get("/api/blogCategory/getBlogMenuNode").then((res) => {
+                console.log(res.data);
+                if (res.data.code == 200){
+                    self.headMenu = res.data.data.list;
+                }
+            });
+            
+        }
+    },
+    created: function () {
+        //获取公共部分数据初始数据
+        this.initInfo();
+        
+    }
 }
 </script>
 
