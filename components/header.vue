@@ -6,7 +6,29 @@
         </div>
         <nav>
             <h2 id="mnavh"><span class="navicon"></span></h2>
-            <ul id="starlist">
+            <el-menu
+                router
+                class="el-menu-demo"
+                mode="horizontal"
+                background-color="#074979"
+                text-color="#dedede"
+                active-text-color="#ffd04b"
+                style="padding-left: 15px;">
+                <el-menu-item index="/">首页</el-menu-item>
+                <template v-for="(head,index) in headMenu">
+                    <el-menu-item :key="index" v-if="head.subNodeList != null && head.subNodeList.length <= 0" :index="head.linkUrl">{{ head.categoryName }}</el-menu-item>
+                    <el-submenu v-else :key="index" :index="head.id">
+                        <template slot="title">{{ head.categoryName }}</template>
+                        <el-menu-item v-for="subNode in head.subNodeList" :key="subNode" :index="subNode.linkUrl">{{ subNode.categoryName }}</el-menu-item>
+                    </el-submenu>
+                </template>
+                <div style="float: right; padding-right: 17px;">
+                    <el-input v-model="keyWork" placeholder="请输入内容" clearable>
+                        <el-button slot="append" icon="el-icon-search"></el-button>
+                    </el-input>
+                </div>
+            </el-menu>
+            <!-- <ul id="starlist">
                 <li><a href="/">首页</a></li>
                 <li v-for="head in headMenu" :key="head">
                     <a :href="head.linkUrl">{{ head.categoryName }}</a>
@@ -14,7 +36,8 @@
                         <li v-for="subNode in head.subNodeList" :key="subNode"><a :href="subNode.linkUrl">{{ subNode.categoryName }}</a></li>
                     </ul>
                 </li>
-            </ul>
+            </ul> -->
+        
         </nav>
     </div>
 </template>
@@ -25,6 +48,7 @@ import axios from 'axios';
 export default {
     data(){
         return{
+            keyWork:'',
             headMenu:[]
         };
     },
@@ -61,6 +85,10 @@ body {
     color: #333;
     background: #F1F1F1;
     line-height: 1.5;
+}
+
+.el-menu--horizontal>.el-menu-item,.el-menu--horizontal>.el-submenu .el-submenu__title,.el-menu--horizontal .el-menu .el-menu-item{
+    font-size: 16px;
 }
 
 img {
@@ -341,6 +369,7 @@ aside {
     background: #f8f8f8;
     position: relative;
     margin-bottom: 15px;
+    float: right;
 }
 
 .search input.input_submit {
