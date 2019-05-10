@@ -57,8 +57,7 @@ export default {
             var self = this;
 
             //获取公共头菜单列表
-            axios.get("/api/blogCategory/getBlogMenuNode").then((res) => {
-                console.log(res.data);
+            axios.get("/blogCategory/getBlogMenuNode").then((res) => {
                 if (res.data.code == 200){
                     self.headMenu = res.data.data.list;
                 }
@@ -1244,5 +1243,20 @@ media
     .address a {
         padding: 0 3px;
     }
+}
+
+.praise {
+    width: 160px;
+    margin: auto;
+    background: #E2523A;
+    color: #fff;
+    box-shadow: 1px 2px 6px 0px rgba(0, 0, 0, .2);
+    border-radius: 3px;
+    line-height: 40px;
+    text-align: center;
+}
+
+.praise a {
+    color: #fff;
 }
 </style>

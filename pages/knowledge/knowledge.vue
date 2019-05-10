@@ -5,9 +5,14 @@
         <div class="blank"></div>
         <Aside/>
         <main>
+            <div class="place">
+                <h1 id="categoryList">
+                    <a v-for="category in categoryList" :key="category" @click="changeCategroy(category.id)" :id="category.tagId">{{ category.categoryName }}</a>
+                </h1>
+            </div>
             <div class="bloglist">
                 <ul id="treatise-list">
-                    <li v-for="treatise in treatiseList" :key="treatise" >
+                    <li v-for="treatise in treatiseList" :key="treatise">
                         <h2><a :href="'/knowledge/treatise-detail?uuid=' + treatise.uuid" :title="treatise.treatiseTitle">{{ treatise.treatiseTitle }}</a></h2>
                         <p class="blogtext">{{ treatise.treatisePreview }}</p>
                         <p class="bloginfo">
@@ -42,7 +47,7 @@ import Aside from '~/components/aside.vue'
 import axios from 'axios';
 
 export default {
-    name:'index',
+    name:'knowledgeVue',
     components: {
         Header,
         Footer,
@@ -50,8 +55,11 @@ export default {
     },
     data() {
         return {
+            categoryFid:'',
+            categoryList:[],
             treatiseList:[],
             search:{
+                categoryId:'',
                 keyWord:'',
                 total:0,
                 currentPage:1,
@@ -60,17 +68,21 @@ export default {
         }
     },
     methods:{
-        addRecord(){
-            //增加网站浏览记录
-            axios.post(
-                    "/blogLogRecord/addRecord", 
-                    {"recordType": 3}
-                ).then((res) => {
+        //获取分类
+        getCategoryList(selectCategory){
+            var self = this;
+            axios.get("/blogCategory/getCategoryList", {params: {"categoryId":self.categoryFid}}).then((res) => {
                 if (res.data.code == 200) {
-                    console.log(res.data.code);
+                    res.data.data.list.forEach(item => {
+                        if (selectCategory == item.id){
+                            item['tagId'] = "thisCategory";
+                        }else {
+                            item['tagId'] = "";
+                        }
+                    });
+                    self.categoryList = res.data.data.list;
                 }
             });
-
         },
         //获取文章列表
         getTreatiseList(currentPage) {
@@ -83,12 +95,22 @@ export default {
                     self.search.currentPage = res.data.data.page.current;
                 }
             });
-            
+        },
+        changeCategroy(selectCategory){
+            this.getCategoryList(selectCategory);
+            this.search.categoryId = selectCategory;
+            this.getTreatiseList(1);
         }
     },
     created: function () {
-        //浏览记录
-        this.addRecord();
+        var categoryId = this.$route.query.categoryId;
+        if(categoryId){
+            this.categoryFid = categoryId;
+        }
+        var thisCategoryId = this.$route.query.thisCategory;
+        this.search.categoryId = thisCategoryId;
+        //获取分类信息
+        this.getCategoryList(thisCategoryId);
         //获取第一页文章
         this.getTreatiseList(1);
     },
