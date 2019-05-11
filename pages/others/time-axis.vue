@@ -5,11 +5,11 @@
         <div class="blank"></div>
         <Aside/>
         <main>
-            <div class="address">您现在的位置是：<a href="/">首页</a>> 时间轴</div>
+            <div class="address">您现在的位置是：<nuxt-link to="/">首页</nuxt-link>> 时间轴</div>
             <div class="timebox">
                 <ul id="timeBoxList">
                     <li v-for="item in messages" :key="item">
-                        <span>{{ item.createTime }}</span><i><a :href="'../knowledge/treatise-detail?uuid=' + item.uuid" target="_blank">{{ item.treatiseTitle }}</a></i>
+                        <span>{{ item.createTime }}</span><i><nuxt-link :to="'../knowledge/treatise-detail?uuid=' + item.uuid" target="_blank">{{ item.treatiseTitle }}</nuxt-link></i>
                     </li>
                 </ul>
             </div>
@@ -43,7 +43,7 @@ export default {
             var self = this;
 
             //查询时间轴数据
-            axios.get("/blogTreatise/getTimeAxis").then((res) => {
+            axios.get("/api/blogTreatise/getTimeAxis").then((res) => {
                 if (res.data.code == 200) {
                     self.messages = res.data.data.list;
                 }

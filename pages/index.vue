@@ -8,12 +8,12 @@
             <div class="bloglist">
                 <ul id="treatise-list">
                     <li v-for="treatise in treatiseList" :key="treatise" >
-                        <h2><a :href="'/knowledge/treatise-detail?uuid=' + treatise.uuid" :title="treatise.treatiseTitle">{{ treatise.treatiseTitle }}</a></h2>
+                        <h2><nuxt-link :to="'/knowledge/treatise-detail?uuid=' + treatise.uuid" :title="treatise.treatiseTitle">{{ treatise.treatiseTitle }}</nuxt-link></h2>
                         <p class="blogtext">{{ treatise.treatisePreview }}</p>
                         <p class="bloginfo">
                             <span>{{ (treatise.source == 1 ? '原创' : '转载') }}</span>
                             <span>{{ treatise.createTime }}</span>
-                            <span>[<a :href="'/knowledge/knowledge?categoryId='+ treatise.fId + '&thisCategory=' + treatise.categoryId">{{ treatise.categoryName }}</a>]</span>
+                            <span>[<nuxt-link :to="'/knowledge/knowledge?categoryId='+ treatise.fId + '&thisCategory=' + treatise.categoryId">{{ treatise.categoryName }}</nuxt-link>]</span>
                             <span>阅读({{ treatise.readNum }})</span>
                         </p>
                     </li>
@@ -63,7 +63,7 @@ export default {
         addRecord(){
             //增加网站浏览记录
             axios.post(
-                    "/blogLogRecord/addRecord", 
+                    "/api/blogLogRecord/addRecord", 
                     {"recordType": 3}
                 ).then((res) => {
                 if (res.data.code == 200) {
@@ -76,7 +76,7 @@ export default {
         getTreatiseList(currentPage) {
             this.search.currentPage = currentPage;
             var self = this;
-            axios.get("/blogTreatise/list", {params: self.search}).then((res) => {
+            axios.get("/api/blogTreatise/list", {params: self.search}).then((res) => {
                 if (res.data.code == 200){
                     self.treatiseList = res.data.data.page.records;
                     self.search.total = res.data.data.page.total;

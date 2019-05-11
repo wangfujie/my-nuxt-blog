@@ -28,16 +28,6 @@
                     </el-input>
                 </div>
             </el-menu>
-            <!-- <ul id="starlist">
-                <li><a href="/">首页</a></li>
-                <li v-for="head in headMenu" :key="head">
-                    <a :href="head.linkUrl">{{ head.categoryName }}</a>
-                    <ul v-if="head.subNodeList != null" class="sub">
-                        <li v-for="subNode in head.subNodeList" :key="subNode"><a :href="subNode.linkUrl">{{ subNode.categoryName }}</a></li>
-                    </ul>
-                </li>
-            </ul> -->
-        
         </nav>
     </div>
 </template>
@@ -57,7 +47,7 @@ export default {
             var self = this;
 
             //获取公共头菜单列表
-            axios.get("/blogCategory/getBlogMenuNode").then((res) => {
+            axios.get("/api/blogCategory/getBlogMenuNode").then((res) => {
                 if (res.data.code == 200){
                     self.headMenu = res.data.data.list;
                 }
@@ -68,7 +58,6 @@ export default {
     created: function () {
         //获取公共部分数据初始数据
         this.initInfo();
-        
     }
 }
 </script>

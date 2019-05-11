@@ -6,9 +6,9 @@
         <Aside/>
         <main>
             <div class="address">您现在的位置是：
-                <a href="/">首页</a>
+                <nuxt-link to="/">首页</nuxt-link>
                 &nbsp;>&nbsp;
-                <a href="#">浏览详情</a>
+                <nuxt-link to="#">浏览详情</nuxt-link>
             </div>
             <div class="infoBox">
                 <h1 class="infoTitle">{{ treatiseInfo.treatiseTitle }}</h1>
@@ -19,7 +19,6 @@
                     <span>阅读(<b>{{ treatiseInfo.readNum }}</b>)</span>
                 </p>
                 <div class="tags" id="the_tags" v-if="treatiseInfo.tags != null">
-                    <!--<a href="#" target="_blank" v-for="tag in treatiseInfo.tagsList">{{ tag }}</a>-->
                     <a href="#2" v-for="tag in treatiseInfo.tagsList" :key="tag">{{ tag }}</a>
                 </div>
                 <div class="news_about">
@@ -29,7 +28,7 @@
                 <div class="treatise_body" v-html="treatiseInfo.treatiseBody"></div>
                 <p v-if="treatiseInfo.source == 2">
                     转载自：
-                    <a target="_blank" :href="treatiseInfo.reprintUrl">{{ treatiseInfo.reprintUrl }}</a>
+                    <nuxt-link target="_blank" :to="treatiseInfo.reprintUrl">{{ treatiseInfo.reprintUrl }}</nuxt-link>
                 </p>
                 <div class="share">
                     <p class="praise">
@@ -38,18 +37,18 @@
                     </p>
                 </div>
                 <div class="nextinfo">
-                    <p v-if="treatiseInfo.upBlogTreatise != null">上一篇：<a :href="'treatise-detail?uuid=' + treatiseInfo.upBlogTreatise.uuid">{{ treatiseInfo.upBlogTreatise.treatiseTitle }}</a></p>
-                    <p v-if="treatiseInfo.upBlogTreatise == null">上一篇：<a :href="'knowledge?categoryId=' + treatiseInfo.fId + '&thisCategory=' + treatiseInfo.categoryId">返回列表</a></p>
+                    <p v-if="treatiseInfo.upBlogTreatise != null">上一篇：<nuxt-link :to="'treatise-detail?uuid=' + treatiseInfo.upBlogTreatise.uuid">{{ treatiseInfo.upBlogTreatise.treatiseTitle }}</nuxt-link></p>
+                    <p v-if="treatiseInfo.upBlogTreatise == null">上一篇：<nuxt-link :to="'knowledge?categoryId=' + treatiseInfo.fId + '&thisCategory=' + treatiseInfo.categoryId">返回列表</nuxt-link></p>
 
-                    <p v-if="treatiseInfo.downBlogTreatise != null">下一篇：<a :href="'treatise-detail?uuid=' + treatiseInfo.downBlogTreatise.uuid">{{ treatiseInfo.downBlogTreatise.treatiseTitle }}</a></p>
-                    <p v-if="treatiseInfo.downBlogTreatise == null">下一篇：<a :href="'knowledge?categoryId=' + treatiseInfo.fId + '&thisCategory=' + treatiseInfo.categoryId">返回列表</a></p>
+                    <p v-if="treatiseInfo.downBlogTreatise != null">下一篇：<nuxt-link :to="'treatise-detail?uuid=' + treatiseInfo.downBlogTreatise.uuid">{{ treatiseInfo.downBlogTreatise.treatiseTitle }}</nuxt-link></p>
+                    <p v-if="treatiseInfo.downBlogTreatise == null">下一篇：<nuxt-link :to="'knowledge?categoryId=' + treatiseInfo.fId + '&thisCategory=' + treatiseInfo.categoryId">返回列表</nuxt-link></p>
                 </div>
                 <div class="news_pl">
                     <h2>文章评论</h2>
                     <div class="gbko">
                         <form action="" method="post" name="saypl" onsubmit="">
                             <div id="plpost">
-                                <p class="saying"><span><a href="#2">共有0条评论</a></span>暂无评论功能...</p>
+                                <p class="saying"><span><nuxt-link to="#2">共有0条评论</nuxt-link></span>暂无评论功能...</p>
                             </div>
                         </form>
                     </div>
@@ -84,7 +83,7 @@ export default {
         //查询详情
         getTreatiseDetail(treatiseUuid) {
             var self = this;
-            axios.get("/blogTreatise/info/" + treatiseUuid).then((res) => {
+            axios.get("/api/blogTreatise/info/" + treatiseUuid).then((res) => {
                 if (res.data.code == 200) {
                     var tags = res.data.data.object.tags;
                     if (tags){
@@ -97,7 +96,7 @@ export default {
         addPraiseNum() {
             var self = this;
             axios.post(
-                    "/blogLogRecord/addRecord", 
+                    "/api/blogLogRecord/addRecord", 
                     {"recordType": 1, "treatiseUuid":self.treatiseInfo.uuid}
                 ).then((res) => {
                 if (res.data.code == 200) {

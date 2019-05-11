@@ -63,12 +63,12 @@ module.exports = {
 
   proxy: [
     [
-      '/blog', 
+      '/api', 
       { 
         // target: 'https://blog.wwolf.wang', 
         target: 'http://localhost:8088', 
         changeOrigin: true,
-        pathRewrite: { '^/blog' : '/' }  //重定向请求路径，防止路由、api路径的冲突
+        pathRewrite: { '^/api' : '/blog' }  //重定向请求路径，防止路由、api路径的冲突
       }
     ]
   ],

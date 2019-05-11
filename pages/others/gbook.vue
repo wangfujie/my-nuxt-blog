@@ -5,7 +5,7 @@
         <div class="blank"></div>
         <Aside/>
         <main>
-            <div class="address">您现在的位置是：<a href="/">网站首页</a>><a href="/others/gbook">留言</a></div>
+            <div class="address">您现在的位置是：<nuxt-link to="/">网站首页</nuxt-link>><nuxt-link to="/others/gbook">留言</nuxt-link></div>
             <div class="gbinfos" id="leaveMessage">
             <div v-for="message in messages" :key="message">
                 <div class="fb">
@@ -94,7 +94,7 @@ export default {
     methods:{
         getMessageList(pageNum) {
             var self = this;
-            axios.get("/blogLeaveMessage/list", {params: self.search}).then((res) => {
+            axios.get("/api/blogLeaveMessage/list", {params: self.search}).then((res) => {
                 if (res.data.code == 200) {
                     self.messages = res.data.data.page.records;
                     self.search.total = res.data.data.page.total;
@@ -106,7 +106,7 @@ export default {
             var self = this;
             this.$refs[blogLeaveMessage].validate((valid) => {
                 if (valid) {
-                    axios.post("/blogLeaveMessage/save", this.blogLeaveMessage).then((res) => {
+                    axios.post("/api/blogLeaveMessage/save", this.blogLeaveMessage).then((res) => {
                         if (res.data.code == 200) {
                             self.blogLeaveMessage = {};
                             self.getMessageList(1);
