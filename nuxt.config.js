@@ -1,7 +1,7 @@
 const pkg = require('./package')
 
 
-module.exports = {
+let config = {
 
   env:{
     baseUrl: process.env.baseUrl
@@ -23,7 +23,8 @@ module.exports = {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/images/logo.png' }
-    ]
+    ],
+    script: []
   },
 
   /*
@@ -43,6 +44,8 @@ module.exports = {
   */
   plugins: [
     '@/plugins/element-ui',
+    '~plugins/highlight',
+    '~plugins/mavonEditor',
     {
       src:'~/plugins/axios'
     }
@@ -84,3 +87,31 @@ module.exports = {
     }
   }
 }
+
+let css = [
+  '/js/highlightjs/styles/github.min.css',
+  '/js/markdown/github-markdown.min.css',
+  '/js/katex/katex.min.css'
+]
+
+css.map(href => {
+  config.head.link.push({
+    rel: "stylesheet",
+    href: href
+  })
+});
+
+let script = [
+  "//cdn.bootcss.com/jquery/3.2.1/jquery.min.js",
+  "/js/highlightjs/highlight.min.js",
+  "/js/katex/katex.min.js"
+]
+
+script.map(src => {
+  config.head.script.push({
+    type: "text/javascript",
+    src: src
+  })
+});
+
+module.exports = config;

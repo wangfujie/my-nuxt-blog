@@ -25,7 +25,7 @@
                     <strong>简介</strong>
                     {{ treatiseInfo.treatisePreview }}
                 </div>
-                <div class="treatise_body" v-html="treatiseInfo.treatiseBody"></div>
+                <div v-html="formatEditormd(treatiseInfo.treatiseBody)" v-highlight></div>
                 <p v-if="treatiseInfo.source == 2">
                     转载自：
                     <nuxt-link target="_blank" :to="treatiseInfo.reprintUrl">{{ treatiseInfo.reprintUrl }}</nuxt-link>
@@ -66,6 +66,7 @@ import Header from '~/components/header.vue'
 import Footer from '~/components/footer.vue'
 import Aside from '~/components/aside.vue'
 import axios from 'axios';
+const MarkdownIt = require("markdown-it");
 
 export default {
     name:'treatiseDetailVue',
@@ -76,6 +77,7 @@ export default {
     },
     data() {
         return {
+            md: new MarkdownIt(),
             treatiseInfo:{}
         }
     },
@@ -114,6 +116,9 @@ export default {
             }).fail((val) => {
                 this.$message.error('您点的太快了！不能太快哦！');
             });
+        },
+        formatEditormd(val) {
+            return this.md.render(val);
         },
         initDatePicker() {
             //使代码部分高亮显示

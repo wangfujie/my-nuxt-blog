@@ -12,8 +12,10 @@
   },
   "dependencies": {
     "cross-env": "^5.2.0",
-    "nuxt": "^2.3.4",
-    "element-ui": "^2.4.11"
+    "element-ui": "^2.8.2",
+    "markdown-it": "^8.4.2",
+    "mavon-editor": "^2.7.4",
+    "nuxt": "^2.6.3"
   },
   "devDependencies": {
     "@nuxtjs/axios": "^5.4.1",
