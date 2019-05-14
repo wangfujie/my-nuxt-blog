@@ -83,7 +83,6 @@ let config = {
     ** You can extend webpack config here
     */
     extend(config, ctx) {
-      
     }
   }
 }
