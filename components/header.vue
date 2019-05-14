@@ -47,7 +47,7 @@ export default {
             var self = this;
 
             //获取公共头菜单列表
-            axios.get("/api/blogCategory/getBlogMenuNode").then((res) => {
+            axios.get("/blog/blogCategory/getBlogMenuNode").then((res) => {
                 if (res.data.code == 200){
                     self.headMenu = res.data.data.list;
                 }

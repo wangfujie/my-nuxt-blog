@@ -63,7 +63,7 @@ export default {
         addRecord(){
             //增加网站浏览记录
             axios.post(
-                    "/api/blogLogRecord/addRecord", 
+                    "/blog/blogLogRecord/addRecord", 
                     {"recordType": 3}
                 ).then((res) => {
                 if (res.data.code == 200) {
@@ -76,7 +76,7 @@ export default {
         getTreatiseList(currentPage) {
             this.search.currentPage = currentPage;
             var self = this;
-            axios.get("/api/blogTreatise/list", {params: self.search}).then((res) => {
+            axios.get("/blog/blogTreatise/list", {params: self.search}).then((res) => {
                 if (res.data.code == 200){
                     self.treatiseList = res.data.data.page.records;
                     self.search.total = res.data.data.page.total;

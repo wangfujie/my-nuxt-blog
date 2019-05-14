@@ -46,28 +46,28 @@ export default {
             var self = this;
 
             // 推荐
-            axios.get("/api/blogTreatise/getRecommend").then((res) => {
+            axios.get("/blog/blogTreatise/getRecommend").then((res) => {
                 if (res.data.code == 200){
                     self.recommendList = res.data.data.list;
                 }
             });
         
             //标签云
-            axios.get("/api/blogTags/getShowTags").then((res) => {
+            axios.get("/blog/blogTags/getShowTags").then((res) => {
                 if (res.data.code == 200){
                     self.tagList = res.data.data.list;
                 }
             });
 
             //阅读排行，10条
-            axios.get("/api/blogTreatise/getReadRanking").then((res) => {
+            axios.get("/blog/blogTreatise/getReadRanking").then((res) => {
                 if (res.data.code == 200){
                     self.readRanking = res.data.data.page.records;
                 }
             });
 
             // 友情链接查询
-            axios.get("/api/blogFriendlyLinks/list").then((res) => {
+            axios.get("/blog/blogFriendlyLinks/list").then((res) => {
                 if (res.data.code == 200){
                     self.friendLinks = res.data.data.page.records;
                 }

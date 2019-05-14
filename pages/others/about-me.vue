@@ -48,7 +48,7 @@ export default {
             var self = this;
 
             //查询关于我信息
-            axios.get("/api/blogAboutMe/info/1").then((res) => {
+            axios.get("/blog/blogAboutMe/info/1").then((res) => {
                 if (res.data.code == 200) {
                     self.aboutMeInfo = res.data.data.object;
                 }

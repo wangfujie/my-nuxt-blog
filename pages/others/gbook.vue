@@ -94,7 +94,7 @@ export default {
     methods:{
         getMessageList(pageNum) {
             var self = this;
-            axios.get("/api/blogLeaveMessage/list", {params: self.search}).then((res) => {
+            axios.get("/blog/blogLeaveMessage/list", {params: self.search}).then((res) => {
                 if (res.data.code == 200) {
                     self.messages = res.data.data.page.records;
                     self.search.total = res.data.data.page.total;
@@ -106,7 +106,7 @@ export default {
             var self = this;
             this.$refs[blogLeaveMessage].validate((valid) => {
                 if (valid) {
-                    axios.post("/api/blogLeaveMessage/save", this.blogLeaveMessage).then((res) => {
+                    axios.post("/blog/blogLeaveMessage/save", this.blogLeaveMessage).then((res) => {
                         if (res.data.code == 200) {
                             self.blogLeaveMessage = {};
                             self.getMessageList(1);

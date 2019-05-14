@@ -71,7 +71,7 @@ export default {
         //获取分类
         getCategoryList(selectCategory){
             var self = this;
-            axios.get("/api/blogCategory/getCategoryList", {params: {"categoryId":self.categoryFid}}).then((res) => {
+            axios.get("/blog/blogCategory/getCategoryList", {params: {"categoryId":self.categoryFid}}).then((res) => {
                 if (res.data.code == 200) {
                     res.data.data.list.forEach(item => {
                         if (selectCategory == item.id){
@@ -88,7 +88,7 @@ export default {
         getTreatiseList(currentPage) {
             this.search.currentPage = currentPage;
             var self = this;
-            axios.get("/api/blogTreatise/list", {params: self.search}).then((res) => {
+            axios.get("/blog/blogTreatise/list", {params: self.search}).then((res) => {
                 if (res.data.code == 200){
                     self.treatiseList = res.data.data.page.records;
                     self.search.total = res.data.data.page.total;

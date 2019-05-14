@@ -66,12 +66,12 @@ let config = {
 
   proxy: [
     [
-      '/api', 
+      '/blog', 
       { 
-        // target: 'https://blog.wwolf.wang', 
-        target: 'http://localhost:8088', 
+        target: 'https://blog.wwolf.wang', 
+        // target: 'http://127.0.0.1:8089', 
         changeOrigin: true,
-        pathRewrite: { '^/api' : '/blog' }  //重定向请求路径，防止路由、api路径的冲突
+        pathRewrite: { '^/blog' : '/blog' }  //重定向请求路径，防止路由、api路径的冲突
       }
     ]
   ],

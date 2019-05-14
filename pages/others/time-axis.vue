@@ -43,7 +43,7 @@ export default {
             var self = this;
 
             //查询时间轴数据
-            axios.get("/api/blogTreatise/getTimeAxis").then((res) => {
+            axios.get("/blog/blogTreatise/getTimeAxis").then((res) => {
                 if (res.data.code == 200) {
                     self.messages = res.data.data.list;
                 }

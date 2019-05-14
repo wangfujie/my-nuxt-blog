@@ -77,7 +77,7 @@ export default {
     },
     data() {
         return {
-            md: new MarkdownIt(),
+            // md: new MarkdownIt(),
             treatiseInfo:{}
         }
     },
@@ -85,7 +85,7 @@ export default {
         //查询详情
         getTreatiseDetail(treatiseUuid) {
             var self = this;
-            axios.get("/api/blogTreatise/info/" + treatiseUuid).then((res) => {
+            axios.get("/blog/blogTreatise/info/" + treatiseUuid).then((res) => {
                 if (res.data.code == 200) {
                     var tags = res.data.data.object.tags;
                     if (tags){
@@ -98,7 +98,7 @@ export default {
         addPraiseNum() {
             var self = this;
             axios.post(
-                    "/api/blogLogRecord/addRecord", 
+                    "/blog/blogLogRecord/addRecord", 
                     {"recordType": 1, "treatiseUuid":self.treatiseInfo.uuid}
                 ).then((res) => {
                 if (res.data.code == 200) {
@@ -118,19 +118,8 @@ export default {
             });
         },
         formatEditormd(val) {
-            return this.md.render(val);
-        },
-        initDatePicker() {
-            //使代码部分高亮显示
-            // SyntaxHighlighter.all();
-        }
-    },
-    watch:{
-        treatiseInfo:function(){
-            //延迟加载，使代码部分高亮显示
-            this.$nextTick(function () {
-                this.initDatePicker();
-            });
+            // return this.md.render(val);
+            return val;
         }
     },
     created: function () {

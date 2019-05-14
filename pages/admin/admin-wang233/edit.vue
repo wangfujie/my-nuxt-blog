@@ -5,9 +5,9 @@
                <h3 class="infoTitle">{{ treatiseInfo.treatiseTitle }}</h3>
             </el-form-item>
             <el-form-item>
-                <mavon-editor ref='md' :ishlj="true" v-model="treatiseInfo.treatiseBody" />
+                <mavon-editor ref='md' :ishlj="true" v-model="treatiseInfo.markdownContent" @change="changeData"/>
             </el-form-item>
-            <el-form-item center>
+            <el-form-item style="text-align: center;">
                 <el-button type="primary" @click="updateTreatiseBody">保存</el-button>
             </el-form-item>
         </el-form>
@@ -25,11 +25,15 @@ export default {
     },
     computed:{
         // 文章内容符号转码
-        content() {
+        treatiseBody() {
             return this.unescape(this.treatiseInfo.treatiseBody);
-        },
+        }
     },
     methods:{
+        changeData(value, render){
+            //获取html格式内容
+            this.treatiseInfo.treatiseBody = render;
+        },
          // 符号转码
         unescape(html) {
             return html
@@ -44,7 +48,7 @@ export default {
         //查询详情
         getTreatiseDetail(treatiseUuid) {
             var self = this;
-            axios.get("/api/blogTreatise/info/" + treatiseUuid).then((res) => {
+            axios.get("/blog/blogTreatise/info/" + treatiseUuid).then((res) => {
                 if (res.data.code == 200) {
                     var tags = res.data.data.object.tags;
                     if (tags){
@@ -55,10 +59,7 @@ export default {
             });
         },
         updateTreatiseBody:function () {
-            // var self = this;
-            console.log(this.treatiseInfo);
-            // 
-            axios.post("/api/blogTreatise/update", this.treatiseInfo).then((res) => {
+            axios.post("/blog/blogTreatise/update", this.treatiseInfo).then((res) => {
                 if (res.data.code == 200) {
                     this.$message({
                         message: res.data.msg,
