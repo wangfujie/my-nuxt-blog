@@ -92,6 +92,8 @@ export default {
                         res.data.data.object.tagsList = tags.split(",");
                     }
                     self.treatiseInfo = res.data.data.object;
+                    //设置title
+                    self.setTitle();
                 }
             });
         },
@@ -120,6 +122,9 @@ export default {
         formatEditormd(val) {
             // return this.md.render(val);
             return val;
+        },
+        setTitle(){
+            window.document.title = this.treatiseInfo.treatiseTitle + ' - ' + this.treatiseInfo.treatisePreview;
         }
     },
     created: function () {
