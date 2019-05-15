@@ -6,7 +6,7 @@
         <div class="bloglist">
             <ul>
                 <li v-for="(treatise,index) in treatiseList" :key="index">
-                    <h2><nuxt-link :to="'/knowledge/treatise-detail?uuid=' + treatise.uuid">{{ treatise.treatiseTitle }}</nuxt-link></h2>
+                    <h2><nuxt-link :to="'/knowledge/detail/' + treatise.uuid">{{ treatise.treatiseTitle }}</nuxt-link></h2>
                     <p class="blogtext">{{ treatise.treatisePreview }}</p>
                     <p class="bloginfo">
                         <span>{{ treatise.sourceName }}</span>

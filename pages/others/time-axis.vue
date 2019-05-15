@@ -4,7 +4,7 @@
         <div class="timebox">
             <ul id="timeBoxList">
                 <li v-for="(item, index) in messages" :key="index">
-                    <span>{{ item.createTime }}</span><i><nuxt-link :to="'../knowledge/treatise-detail?uuid=' + item.uuid" target="_blank">{{ item.treatiseTitle }}</nuxt-link></i>
+                    <span>{{ item.createTime }}</span><i><nuxt-link :to="'../knowledge/detail/' + item.uuid" target="_blank">{{ item.treatiseTitle }}</nuxt-link></i>
                 </li>
             </ul>
         </div>

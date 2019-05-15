@@ -4,7 +4,7 @@
             <h2 class="hometitle">推荐</h2>
             <ul class="news">
                 <li v-for="(recommend, index) in recommendList" :key="index">
-                    <nuxt-link :to="'/knowledge/treatise-detail?uuid=' + recommend.uuid" :title="recommend.treatiseTitle">{{ recommend.treatiseTitle }}</nuxt-link>
+                    <nuxt-link :to="'/knowledge/detail/' + recommend.uuid" :title="recommend.treatiseTitle">{{ recommend.treatiseTitle }}</nuxt-link>
                 </li>
             </ul>
         </div>
@@ -18,7 +18,7 @@
             <h2 class="hometitle">阅读排行</h2>
             <ul class="news">
                 <li v-for="(ranking, index) in readRanking" :key="index" >
-                    <nuxt-link :to="'/knowledge/treatise-detail?uuid=' + ranking.uuid" :title="ranking.treatiseTitle">{{ ranking.treatiseTitle }}</nuxt-link>
+                    <nuxt-link :to="'/knowledge/detail/' + ranking.uuid" :title="ranking.treatiseTitle">{{ ranking.treatiseTitle }}</nuxt-link>
                 </li>
             </ul>
         </div>

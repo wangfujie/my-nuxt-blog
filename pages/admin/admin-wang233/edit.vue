@@ -59,19 +59,19 @@ export default {
             });
         },
         updateTreatiseBody:function () {
-            axios.post("/blog/blogTreatise/update", this.treatiseInfo).then((res) => {
-                if (res.data.code == 200) {
-                    this.$message({
-                        message: res.data.msg,
-                        type: 'success'
-                    });
-                }else {
-                    this.$message({
-                        message: res.data.msg,
-                        type: 'warning'
-                    });
-                }
-            });
+            // axios.post("/blog/blogTreatise/update", this.treatiseInfo).then((res) => {
+            //     if (res.data.code == 200) {
+            //         this.$message({
+            //             message: res.data.msg,
+            //             type: 'success'
+            //         });
+            //     }else {
+            //         this.$message({
+            //             message: res.data.msg,
+            //             type: 'warning'
+            //         });
+            //     }
+            // });
         }
     },
     created: function () {

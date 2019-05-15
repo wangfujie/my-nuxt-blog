@@ -23,7 +23,7 @@
             <div v-html="formatEditormd(treatiseInfo.treatiseBody)" v-highlight></div>
             <p v-if="treatiseInfo.source == 2">
                 转载自：
-                <nuxt-link target="_blank" :to="treatiseInfo.reprintUrl">{{ treatiseInfo.reprintUrl }}</nuxt-link>
+                <a target="_blank" :href="treatiseInfo.reprintUrl">{{ treatiseInfo.reprintUrl }}</a>
             </p>
             <div class="share">
                 <p class="praise">
@@ -32,11 +32,11 @@
                 </p>
             </div>
             <div class="nextinfo">
-                <p v-if="treatiseInfo.upBlogTreatise != null">上一篇：<nuxt-link :to="'treatise-detail?uuid=' + treatiseInfo.upBlogTreatise.uuid">{{ treatiseInfo.upBlogTreatise.treatiseTitle }}</nuxt-link></p>
-                <p v-if="treatiseInfo.upBlogTreatise == null">上一篇：<nuxt-link :to="'knowledge?categoryId=' + treatiseInfo.fId + '&thisCategory=' + treatiseInfo.categoryId">返回列表</nuxt-link></p>
+                <p v-if="treatiseInfo.upBlogTreatise != null">上一篇：<nuxt-link :to="'' + treatiseInfo.upBlogTreatise.uuid">{{ treatiseInfo.upBlogTreatise.treatiseTitle }}</nuxt-link></p>
+                <p v-if="treatiseInfo.upBlogTreatise == null">上一篇：<nuxt-link :to="'../knowledge?categoryId=' + treatiseInfo.fId + '&thisCategory=' + treatiseInfo.categoryId">返回列表</nuxt-link></p>
 
-                <p v-if="treatiseInfo.downBlogTreatise != null">下一篇：<nuxt-link :to="'treatise-detail?uuid=' + treatiseInfo.downBlogTreatise.uuid">{{ treatiseInfo.downBlogTreatise.treatiseTitle }}</nuxt-link></p>
-                <p v-if="treatiseInfo.downBlogTreatise == null">下一篇：<nuxt-link :to="'knowledge?categoryId=' + treatiseInfo.fId + '&thisCategory=' + treatiseInfo.categoryId">返回列表</nuxt-link></p>
+                <p v-if="treatiseInfo.downBlogTreatise != null">下一篇：<nuxt-link :to="'' + treatiseInfo.downBlogTreatise.uuid">{{ treatiseInfo.downBlogTreatise.treatiseTitle }}</nuxt-link></p>
+                <p v-if="treatiseInfo.downBlogTreatise == null">下一篇：<nuxt-link :to="'../knowledge?categoryId=' + treatiseInfo.fId + '&thisCategory=' + treatiseInfo.categoryId">返回列表</nuxt-link></p>
             </div>
             <div class="news_pl">
                 <h2>文章评论</h2>
@@ -138,8 +138,7 @@ export default {
         }
     },
     created: function () {
-        debugger
-        var uuid = this.$route.query.uuid;
+        var uuid = this.$route.params.uuid;
         //如果传有主键uuid，则加载详情数据
         if (uuid){
             //初始化数据
@@ -147,7 +146,7 @@ export default {
         }
     },
     mounted() {
-        
+       
     }
 }
 
