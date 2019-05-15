@@ -1,43 +1,34 @@
 <template>
-    <div>
-      <Header/>
-      <div>
-        <div class="blank"></div>
-        <Aside/>
-        <main>
-            <div class="place">
-                <h1 id="categoryList">
-                    <a v-for="category in categoryList" :key="category" @click="changeCategroy(category.id)" :id="category.tagId">{{ category.categoryName }}</a>
-                </h1>
-            </div>
-            <div class="bloglist">
-                <ul id="treatise-list">
-                    <li v-for="treatise in treatiseList" :key="treatise">
-                        <h2><nuxt-link :to="'/knowledge/treatise-detail?uuid=' + treatise.uuid" :title="treatise.treatiseTitle">{{ treatise.treatiseTitle }}</nuxt-link></h2>
-                        <p class="blogtext">{{ treatise.treatisePreview }}</p>
-                        <p class="bloginfo">
-                            <span>{{ (treatise.source == 1 ? '原创' : '转载') }}</span>
-                            <span>{{ treatise.createTime }}</span>
-                            <span>[<nuxt-link :to="'/knowledge/knowledge?categoryId='+ treatise.fId + '&thisCategory=' + treatise.categoryId">{{ treatise.categoryName }}</nuxt-link>]</span>
-                            <span>阅读({{ treatise.readNum }})</span>
-                        </p>
-                    </li>
-                </ul>
-            </div>
-            <!-- <div ref="pageListDiv" class="m-style pageList"></div> -->
-            <el-pagination style="margin-top: 15px;"
-                background
-                layout="prev, pager, next"
-                @current-change="getTreatiseList"
-                :current-page.sync="search.currentPage"
-                :page-size="search.pageSize"
-                :total="search.total">
-            </el-pagination>
-        </main>
-        <div class="blank"></div>
-      </div>
-      <Footer/>
-    </div>
+    <main>
+        <div class="place">
+            <h1 id="categoryList">
+                <a v-for="(category, index) in categoryList" :key="index" @click="changeCategroy(category.id)" :id="category.tagId">{{ category.categoryName }}</a>
+            </h1>
+        </div>
+        <div class="bloglist">
+            <ul id="treatise-list">
+                <li v-for="(treatise, index) in treatiseList" :key="index">
+                    <h2><nuxt-link :to="'/knowledge/treatise-detail?uuid=' + treatise.uuid" :title="treatise.treatiseTitle">{{ treatise.treatiseTitle }}</nuxt-link></h2>
+                    <p class="blogtext">{{ treatise.treatisePreview }}</p>
+                    <p class="bloginfo">
+                        <span>{{ (treatise.source == 1 ? '原创' : '转载') }}</span>
+                        <span>{{ treatise.createTime }}</span>
+                        <span>[<nuxt-link :to="'/knowledge/knowledge?categoryId='+ treatise.fId + '&thisCategory=' + treatise.categoryId">{{ treatise.categoryName }}</nuxt-link>]</span>
+                        <span>阅读({{ treatise.readNum }})</span>
+                    </p>
+                </li>
+            </ul>
+        </div>
+        <!-- <div ref="pageListDiv" class="m-style pageList"></div> -->
+        <el-pagination style="margin-top: 15px;"
+            background
+            layout="prev, pager, next"
+            @current-change="getTreatiseList"
+            :current-page.sync="search.currentPage"
+            :page-size="search.pageSize"
+            :total="search.total">
+        </el-pagination>
+    </main>
 </template>
 
 <script>
@@ -47,12 +38,8 @@ import Aside from '~/components/aside.vue'
 import axios from 'axios';
 
 export default {
-    name:'knowledgeVue',
-    components: {
-        Header,
-        Footer,
-        Aside
-    },
+    layout: 'blog',
+    name:'resourcesVue',
     data() {
         return {
             categoryFid:'',

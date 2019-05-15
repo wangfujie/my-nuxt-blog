@@ -1,38 +1,22 @@
 <template>
-    <div>
-      <Header/>
-      <div>
-        <div class="blank"></div>
-        <Aside/>
-        <main>
-            <div class="address">您现在的位置是：<nuxt-link to="/">首页</nuxt-link>> 时间轴</div>
-            <div class="timebox">
-                <ul id="timeBoxList">
-                    <li v-for="item in messages" :key="item">
-                        <span>{{ item.createTime }}</span><i><nuxt-link :to="'../knowledge/treatise-detail?uuid=' + item.uuid" target="_blank">{{ item.treatiseTitle }}</nuxt-link></i>
-                    </li>
-                </ul>
-            </div>
-        </main>
-        <div class="blank"></div>
-      </div>
-      <Footer/>
-    </div>
+    <main>
+        <div class="address">您现在的位置是：<nuxt-link to="/">首页</nuxt-link>> 时间轴</div>
+        <div class="timebox">
+            <ul id="timeBoxList">
+                <li v-for="(item, index) in messages" :key="index">
+                    <span>{{ item.createTime }}</span><i><nuxt-link :to="'../knowledge/treatise-detail?uuid=' + item.uuid" target="_blank">{{ item.treatiseTitle }}</nuxt-link></i>
+                </li>
+            </ul>
+        </div>
+    </main>
 </template>
 
 <script>
-import Header from '~/components/header.vue'
-import Footer from '~/components/footer.vue'
-import Aside from '~/components/aside.vue'
 import axios from 'axios';
 
 export default {
+    layout: 'blog',
     name:'timeAxisVue',
-    components: {
-        Header,
-        Footer,
-        Aside
-    },
     data() {
         return {
             messages:[]

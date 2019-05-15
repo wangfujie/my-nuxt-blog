@@ -1,80 +1,74 @@
 <template>
-    <div>
-      <Header/>
-      <div>
-        <div class="blank"></div>
-        <Aside/>
-        <main>
-            <div class="address">您现在的位置是：
-                <nuxt-link to="/">首页</nuxt-link>
-                &nbsp;>&nbsp;
-                <nuxt-link to="#">浏览详情</nuxt-link>
+    <main>
+        <div class="address">您现在的位置是：
+            <nuxt-link to="/">首页</nuxt-link>
+            &nbsp;>&nbsp;
+            <nuxt-link to="#">浏览详情</nuxt-link>
+        </div>
+        <div class="infoBox">
+            <h1 class="infoTitle">{{ treatiseInfo.treatiseTitle }}</h1>
+            <p class="blogInfo">
+                <span>{{ treatiseInfo.sourceName }}</span>
+                <span>{{ treatiseInfo.createTime }}</span>
+                <span>{{ treatiseInfo.categoryName }}</span>
+                <span>阅读(<b>{{ treatiseInfo.readNum }}</b>)</span>
+            </p>
+            <div class="tags" id="the_tags" v-if="treatiseInfo.tags != null">
+                <a href="#2" v-for="(tag, index) in treatiseInfo.tagsList" :key="index">{{ tag }}</a>
             </div>
-            <div class="infoBox">
-                <h1 class="infoTitle">{{ treatiseInfo.treatiseTitle }}</h1>
-                <p class="blogInfo">
-                    <span>{{ treatiseInfo.sourceName }}</span>
-                    <span>{{ treatiseInfo.createTime }}</span>
-                    <span>{{ treatiseInfo.categoryName }}</span>
-                    <span>阅读(<b>{{ treatiseInfo.readNum }}</b>)</span>
+            <div class="news_about">
+                <strong>简介</strong>
+                {{ treatiseInfo.treatisePreview }}
+            </div>
+            <div v-html="formatEditormd(treatiseInfo.treatiseBody)" v-highlight></div>
+            <p v-if="treatiseInfo.source == 2">
+                转载自：
+                <nuxt-link target="_blank" :to="treatiseInfo.reprintUrl">{{ treatiseInfo.reprintUrl }}</nuxt-link>
+            </p>
+            <div class="share">
+                <p class="praise">
+                    <a href="#2" @click="addPraiseNum"> 很赞哦！</a>
+                    (<b>{{ treatiseInfo.praiseNum }}</b>)
                 </p>
-                <div class="tags" id="the_tags" v-if="treatiseInfo.tags != null">
-                    <a href="#2" v-for="tag in treatiseInfo.tagsList" :key="tag">{{ tag }}</a>
-                </div>
-                <div class="news_about">
-                    <strong>简介</strong>
-                    {{ treatiseInfo.treatisePreview }}
-                </div>
-                <div v-html="formatEditormd(treatiseInfo.treatiseBody)" v-highlight></div>
-                <p v-if="treatiseInfo.source == 2">
-                    转载自：
-                    <nuxt-link target="_blank" :to="treatiseInfo.reprintUrl">{{ treatiseInfo.reprintUrl }}</nuxt-link>
-                </p>
-                <div class="share">
-                    <p class="praise">
-                        <a href="#2" @click="addPraiseNum"> 很赞哦！</a>
-                        (<b>{{ treatiseInfo.praiseNum }}</b>)
-                    </p>
-                </div>
-                <div class="nextinfo">
-                    <p v-if="treatiseInfo.upBlogTreatise != null">上一篇：<nuxt-link :to="'treatise-detail?uuid=' + treatiseInfo.upBlogTreatise.uuid">{{ treatiseInfo.upBlogTreatise.treatiseTitle }}</nuxt-link></p>
-                    <p v-if="treatiseInfo.upBlogTreatise == null">上一篇：<nuxt-link :to="'knowledge?categoryId=' + treatiseInfo.fId + '&thisCategory=' + treatiseInfo.categoryId">返回列表</nuxt-link></p>
+            </div>
+            <div class="nextinfo">
+                <p v-if="treatiseInfo.upBlogTreatise != null">上一篇：<nuxt-link :to="'treatise-detail?uuid=' + treatiseInfo.upBlogTreatise.uuid">{{ treatiseInfo.upBlogTreatise.treatiseTitle }}</nuxt-link></p>
+                <p v-if="treatiseInfo.upBlogTreatise == null">上一篇：<nuxt-link :to="'knowledge?categoryId=' + treatiseInfo.fId + '&thisCategory=' + treatiseInfo.categoryId">返回列表</nuxt-link></p>
 
-                    <p v-if="treatiseInfo.downBlogTreatise != null">下一篇：<nuxt-link :to="'treatise-detail?uuid=' + treatiseInfo.downBlogTreatise.uuid">{{ treatiseInfo.downBlogTreatise.treatiseTitle }}</nuxt-link></p>
-                    <p v-if="treatiseInfo.downBlogTreatise == null">下一篇：<nuxt-link :to="'knowledge?categoryId=' + treatiseInfo.fId + '&thisCategory=' + treatiseInfo.categoryId">返回列表</nuxt-link></p>
-                </div>
-                <div class="news_pl">
-                    <h2>文章评论</h2>
-                    <div class="gbko">
-                        <form action="" method="post" name="saypl" onsubmit="">
-                            <div id="plpost">
-                                <p class="saying"><span><nuxt-link to="#2">共有0条评论</nuxt-link></span>暂无评论功能...</p>
-                            </div>
-                        </form>
-                    </div>
+                <p v-if="treatiseInfo.downBlogTreatise != null">下一篇：<nuxt-link :to="'treatise-detail?uuid=' + treatiseInfo.downBlogTreatise.uuid">{{ treatiseInfo.downBlogTreatise.treatiseTitle }}</nuxt-link></p>
+                <p v-if="treatiseInfo.downBlogTreatise == null">下一篇：<nuxt-link :to="'knowledge?categoryId=' + treatiseInfo.fId + '&thisCategory=' + treatiseInfo.categoryId">返回列表</nuxt-link></p>
+            </div>
+            <div class="news_pl">
+                <h2>文章评论</h2>
+                <div class="gbko">
+                    <form action="" method="post" name="saypl" onsubmit="">
+                        <div id="plpost">
+                            <p class="saying"><span><nuxt-link to="#2">共有0条评论</nuxt-link></span>暂无评论功能...</p>
+                        </div>
+                    </form>
                 </div>
             </div>
-        </main>
-        <div class="blank"></div>
-      </div>
-      <Footer/>
-    </div>
+        </div>
+    </main>
 </template>
 
 <script>
-import Header from '~/components/header.vue'
-import Footer from '~/components/footer.vue'
-import Aside from '~/components/aside.vue'
 import axios from 'axios';
 const MarkdownIt = require("markdown-it");
 
 export default {
-    name:'treatiseDetailVue',
-    components: {
-        Header,
-        Footer,
-        Aside
+    head: {
+        script: [
+            {src: '/ueditor/SyntaxHighlighter/shCore.js'}
+        ],
+        link: [
+            {rel: 'stylesheet', href: '/ueditor/themes/default/css/ueditor.min.css'},
+            {rel: 'stylesheet', href: '/ueditor/SyntaxHighlighter/shCoreDefault.css'},
+            {rel: 'stylesheet', href: '/ueditor/themes/iframe.css'}
+        ]
     },
+    layout: 'blog',
+    name:'treatiseDetailVue',
     data() {
         return {
             // md: new MarkdownIt(),
@@ -125,9 +119,26 @@ export default {
         },
         setTitle(){
             window.document.title = this.treatiseInfo.treatiseTitle + ' - ' + this.treatiseInfo.treatisePreview;
+        },
+        initDatePicker : function () {
+            //使代码部分高亮显示
+            if(typeof(SyntaxHighlighter) == 'undefined'){
+                
+            }else{
+                SyntaxHighlighter.all();
+            }
+        }
+    },
+    watch:{
+        treatiseInfo:function(){
+            //延迟加载，使代码部分高亮显示
+            this.$nextTick(function () {
+                this.initDatePicker();
+            });
         }
     },
     created: function () {
+        debugger
         var uuid = this.$route.query.uuid;
         //如果传有主键uuid，则加载详情数据
         if (uuid){

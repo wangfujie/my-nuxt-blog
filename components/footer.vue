@@ -4,9 +4,3 @@
         <nuxt-link to="http://www.miitbeian.gov.cn/" target="_blank">蜀ICP备18033892号-1</nuxt-link>
     </p>
 </template>
-
-<script>
-export default {
-  
-}
-</script>

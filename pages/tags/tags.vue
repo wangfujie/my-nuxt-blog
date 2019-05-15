@@ -1,16 +1,18 @@
 <template>
-    <div>
-      <main>
+    <main>
+        <div class="address">
+            您现在的位置是：<nuxt-link to='/'>首页</nuxt-link>&nbsp;>&nbsp;标签信息列表&nbsp;>&nbsp;
+        </div>
         <div class="bloglist">
-            <ul id="treatise-list">
-                <li v-for="(item, index) in treatiseList" :key="index" >
-                    <h2><nuxt-link :to="'/knowledge/treatise-detail?uuid=' + item.uuid" :title="item.treatiseTitle">{{ item.treatiseTitle }}</nuxt-link></h2>
-                    <p class="blogtext">{{ item.treatisePreview }}</p>
+            <ul>
+                <li v-for="(treatise,index) in treatiseList" :key="index">
+                    <h2><nuxt-link :to="'/knowledge/treatise-detail?uuid=' + treatise.uuid">{{ treatise.treatiseTitle }}</nuxt-link></h2>
+                    <p class="blogtext">{{ treatise.treatisePreview }}</p>
                     <p class="bloginfo">
-                        <span>{{ (item.source == 1 ? '原创' : '转载') }}</span>
-                        <span>{{ item.createTime }}</span>
-                        <span>[<nuxt-link :to="'/knowledge/knowledge?categoryId='+ item.fId + '&thisCategory=' + item.categoryId">{{ item.categoryName }}</nuxt-link>]</span>
-                        <span>阅读({{ item.readNum }})</span>
+                        <span>{{ treatise.sourceName }}</span>
+                        <span>{{ treatise.createTime }}</span>
+                        <span>[<nuxt-link to="#2">{{ treatise.categoryName }}</nuxt-link>]</span>
+                        <span>阅读({{ treatise.readNum }})</span>
                     </p>
                 </li>
             </ul>
@@ -24,8 +26,7 @@
             :page-size="search.pageSize"
             :total="search.total">
         </el-pagination>
-      </main>
-    </div>
+    </main>
 </template>
 
 <script>
@@ -33,11 +34,12 @@ import axios from 'axios';
 
 export default {
     layout: 'blog',
-    name:'index',
+    name:'tagsVue',
     data() {
         return {
             treatiseList:[],
             search:{
+                tagInfo:'',
                 keyWord:'',
                 total:0,
                 currentPage:1,
@@ -46,18 +48,6 @@ export default {
         }
     },
     methods:{
-        addRecord(){
-            //增加网站浏览记录
-            axios.post(
-                    "/blog/blogLogRecord/addRecord", 
-                    {"recordType": 3}
-                ).then((res) => {
-                if (res.data.code == 200) {
-                    console.log(res.data.code);
-                }
-            });
-
-        },
         //获取文章列表
         getTreatiseList(currentPage) {
             this.search.currentPage = currentPage;
@@ -67,14 +57,17 @@ export default {
                     self.treatiseList = res.data.data.page.records;
                     self.search.total = res.data.data.page.total;
                     self.search.currentPage = res.data.data.page.current;
+                }else if(res.data.code == 404){
+                    self.treatiseList = [];
+                    self.search.total = 0;
+                    self.search.currentPage = 0;
                 }
             });
-            
         }
     },
     created: function () {
-        //浏览记录
-        this.addRecord();
+        var tagName = this.$route.query.tagName;
+        this.search.tagInfo = tagName;
         //获取第一页文章
         this.getTreatiseList(1);
     },

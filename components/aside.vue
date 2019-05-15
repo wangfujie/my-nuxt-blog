@@ -3,7 +3,7 @@
         <div class="newsbox">
             <h2 class="hometitle">推荐</h2>
             <ul class="news">
-                <li v-for="recommend in recommendList" :key="recommend">
+                <li v-for="(recommend, index) in recommendList" :key="index">
                     <nuxt-link :to="'/knowledge/treatise-detail?uuid=' + recommend.uuid" :title="recommend.treatiseTitle">{{ recommend.treatiseTitle }}</nuxt-link>
                 </li>
             </ul>
@@ -11,19 +11,23 @@
         <div class="newsbox">
             <h2 class="hometitle">标签云</h2>
             <ul class="cloud">
-                <nuxt-link v-for="tag in tagList" :key="tag" :to="'/tags/tags?tagName=' + tag.tagName" target="_blank" >{{ tag.tagName }}</nuxt-link>
+                <nuxt-link v-for="(tag, index) in tagList" :key="index" :to="'/tags/tags?tagName=' + tag.tagName" target="_blank" >{{ tag.tagName }}</nuxt-link>
             </ul>
         </div>
         <div class="newsbox">
             <h2 class="hometitle">阅读排行</h2>
             <ul class="news">
-                <li v-for="ranking in readRanking" :key="ranking" ><nuxt-link :to="'/knowledge/treatise-detail?uuid=' + ranking.uuid" :title="ranking.treatiseTitle">{{ ranking.treatiseTitle }}</nuxt-link></li>
+                <li v-for="(ranking, index) in readRanking" :key="index" >
+                    <nuxt-link :to="'/knowledge/treatise-detail?uuid=' + ranking.uuid" :title="ranking.treatiseTitle">{{ ranking.treatiseTitle }}</nuxt-link>
+                </li>
             </ul>
         </div>
         <div class="newsbox">
             <h2 class="hometitle">友情链接</h2>
             <ul class="links">
-                <li v-for="link in friendLinks" :key="link" ><nuxt-link :to="link.linkUrl" :title="link.linkTitle" target="_blank">{{ link.linkTitle }}</nuxt-link></li>
+                <li v-for="(link, index) in friendLinks" :key="index" >
+                    <a :href="link.linkUrl" :title="link.linkTitle" target="_blank">{{ link.linkTitle }}</a>
+                </li>
             </ul>
         </div>
     </aside>
