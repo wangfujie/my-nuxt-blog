@@ -1,10 +1,18 @@
 <template>
     <main>
-        <div class="address">您现在的位置是：<nuxt-link to="/">首页</nuxt-link>> 时间轴</div>
+        <div class="address">
+            <el-breadcrumb style="font-size: 15px; padding: 5px 0;" separator-class="el-icon-arrow-right">
+                <el-breadcrumb-item :to="{ path: '/' }">网站首页</el-breadcrumb-item>
+                <el-breadcrumb-item>时间轴</el-breadcrumb-item>
+            </el-breadcrumb>
+        </div>
         <div class="timebox">
             <ul id="timeBoxList">
                 <li v-for="(item, index) in messages" :key="index">
-                    <span>{{ item.createTime }}</span><i><nuxt-link :to="'../knowledge/detail/' + item.uuid">{{ item.treatiseTitle }}</nuxt-link></i>
+                    <span>{{ item.createTime }}</span>
+                    <i>
+                        <nuxt-link :to="'../knowledge/detail/' + item.uuid">{{ item.treatiseTitle }}</nuxt-link>
+                    </i>
                 </li>
             </ul>
         </div>

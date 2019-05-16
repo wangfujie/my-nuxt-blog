@@ -6,6 +6,7 @@
         <Aside/>
         <nuxt />
         <div class="blank"></div>
+        <BackToTop/>
       </div>
       <Footer/>
   </div>
@@ -15,13 +16,15 @@
 import Header from '~/components/header.vue'
 import Footer from '~/components/footer.vue'
 import Aside from '~/components/aside.vue'
+import BackToTop from '~/components/backToTop.vue'
 
 export default {
     name: 'blog',
     components: {
         Header,
         Footer,
-        Aside
+        Aside,
+        BackToTop
     }
 }
 </script>

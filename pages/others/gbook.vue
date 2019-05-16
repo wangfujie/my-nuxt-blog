@@ -1,6 +1,11 @@
 <template>
     <main>
-        <div class="address">您现在的位置是：<nuxt-link to="/">网站首页</nuxt-link>><nuxt-link to="/others/gbook">留言</nuxt-link></div>
+        <div class="address">
+            <el-breadcrumb style="font-size: 15px; padding: 5px 0;" separator-class="el-icon-arrow-right">
+                <el-breadcrumb-item :to="{ path: '/' }">网站首页</el-breadcrumb-item>
+                <el-breadcrumb-item>留言</el-breadcrumb-item>
+            </el-breadcrumb>
+        </div>
         <div class="gbinfos" id="leaveMessage">
         <div v-for="(message, index) in messages" :key="index">
             <div class="fb">

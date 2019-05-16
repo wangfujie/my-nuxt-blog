@@ -1,9 +1,10 @@
 <template>
     <main>
-        <div class="address">您现在的位置是：
-            <nuxt-link to="/">首页</nuxt-link>
-            &nbsp;>&nbsp;
-            <nuxt-link to="#">浏览详情</nuxt-link>
+        <div class="address">
+            <el-breadcrumb separator-class="el-icon-arrow-right">
+            <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+            <el-breadcrumb-item>浏览详情</el-breadcrumb-item>
+        </el-breadcrumb>
         </div>
         <div class="infoBox">
             <h1 class="infoTitle">{{ treatiseInfo.treatiseTitle }}</h1>

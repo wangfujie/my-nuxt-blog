@@ -1,6 +1,11 @@
 <template>
     <main>
-        <div class="address">您现在的位置是：<nuxt-link to="/">首页</nuxt-link>&nbsp;>&nbsp;关于我</div>
+        <div class="address">
+            <el-breadcrumb style="font-size: 15px; padding: 5px 0;" separator-class="el-icon-arrow-right">
+                <el-breadcrumb-item :to="{ path: '/' }">网站首页</el-breadcrumb-item>
+                <el-breadcrumb-item>关于我</el-breadcrumb-item>
+            </el-breadcrumb>
+        </div>
         <div class="infosbox">
             <h1 class="infotitle">关于我</h1>
             <div class="news_con">
