@@ -119,7 +119,7 @@ export default {
             return val;
         },
         setTitle(){
-            window.document.title = this.treatiseInfo.treatiseTitle + ' - ' + this.treatiseInfo.treatisePreview;
+            window.document.title = this.treatiseInfo.treatiseTitle + ' - ' + 'Mr · 王的博客';
         },
         initDatePicker : function () {
             //使代码部分高亮显示
