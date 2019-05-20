@@ -1,6 +1,6 @@
 <template>
   <transition :name="transitionName">
-    <div v-show="visible" :style="customStyle" class="back-to-ceiling" @click="backToTop">
+    <div v-show="visible" :style="customStyle" class="back-to-ceiling" @click="backToTop" ref="toTop">
       <svg width="16" height="16" viewBox="0 0 17 17" xmlns="http://www.w3.org/2000/svg" class="Icon Icon--backToTopArrow" aria-hidden="true" style="height: 16px; width: 16px;">
         <title>回到顶部</title>
         <g>
