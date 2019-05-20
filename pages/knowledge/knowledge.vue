@@ -82,33 +82,13 @@ export default {
                     self.search.total = 0;
                     self.search.currentPage = 0;
                 }
-                self.backToTop();
+                self.comsys.backToTop();
             });
         },
         changeCategroy(selectCategory){
             this.getCategoryList(selectCategory);
             this.search.categoryId = selectCategory;
             this.getTreatiseList(1);
-        },
-        //回到顶部
-        backToTop(){
-            //获得当前高度
-            let start = document.documentElement.scrollTop || document.body.scrollTop;
-            let i = 0
-            var interval = setInterval(() => {
-                const next = Math.floor(this.easeInOutQuad(10 * i, start, -start, 500))
-                if (next <= 0) {
-                    window.scrollTo(0, 0)
-                    clearInterval(interval)
-                } else {
-                    window.scrollTo(0, next)
-                }
-                i++
-            }, 16.7);
-        },
-        easeInOutQuad(t, b, c, d) {
-            if ((t /= d / 2) < 1) return c / 2 * t * t + b
-            return -c / 2 * (--t * (t - 2) - 1) + b
         }
     },
     created: function () {

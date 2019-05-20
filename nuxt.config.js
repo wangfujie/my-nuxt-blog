@@ -48,7 +48,8 @@ let config = {
     // '~plugins/mavonEditor',
     {
       src:'~/plugins/axios'
-    }
+    },
+    '@/plugins/commom',
   ],
 
   /*

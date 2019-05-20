@@ -11,8 +11,10 @@
             <div class="news_con">
                 <p>博主：{{ aboutMeInfo.myName }}</p>
                 <p>简介：{{ aboutMeInfo.aboutMe }}</p>
+                <p style="color: red;">博客运行时间：{{ runTime }}</p>
                 <h2>About my blog</h2>
                 <p>域 名：<a :href="aboutMeInfo.blogDomainName" target="_blank" >{{ aboutMeInfo.blogDomainName }}</a> </p>
+                <p>GitHub：<a href="https://github.com/wangfujie" target="_blank" >https://github.com/wangfujie</a> </p>
                 <p>服务器：{{ aboutMeInfo.serverName }}
                 <p>备案号：{{ aboutMeInfo.recordNumber }}</p>
                 <p>技 术：{{ aboutMeInfo.programType }}</p>
@@ -29,7 +31,8 @@ export default {
     name:'aboutMeVue',
     data() {
         return {
-            aboutMeInfo:{}
+            aboutMeInfo:{},
+            runTime: ''
         }
     },
     methods:{
@@ -48,7 +51,15 @@ export default {
         this.initInfo();
     },
     mounted() {
-        
+        var self = this;
+        this.timer = setInterval(function() {
+            self.runTime = self.comsys.timeFn(self.aboutMeInfo.domainTime);
+        }, 1000);
+    },
+    beforeDestroy(){
+        if(this.timer){
+            clearInterval(this.timer);
+        }
     }
 }
 
