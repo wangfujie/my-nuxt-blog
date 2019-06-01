@@ -55,7 +55,7 @@
 
 <script>
 import axios from 'axios';
-const MarkdownIt = require("markdown-it");
+// const MarkdownIt = require("markdown-it");
 
 export default {
     head: {

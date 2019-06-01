@@ -24,7 +24,7 @@
                 </template>
                 <div style="float: right; padding-right: 17px;">
                     <el-input v-model="keyWork" placeholder="请输入内容" clearable>
-                        <el-button slot="append" icon="el-icon-search"></el-button>
+                        <el-button slot="append" icon="el-icon-search" @click="searchData()"></el-button>
                     </el-input>
                 </div>
             </el-menu>
@@ -53,6 +53,10 @@ export default {
                 }
             });
             
+        },
+        searchData:function(){
+            let linkUrl = "https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&tn=baidu&wd=site%3Ablog.wwolf.wang%20" + this.keyWork
+            window.open(linkUrl);
         }
     },
     created: function () {
