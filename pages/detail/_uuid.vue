@@ -34,18 +34,24 @@
             </div>
             <div class="nextinfo">
                 <p v-if="treatiseInfo.upBlogTreatise != null">上一篇：<nuxt-link :to="'' + treatiseInfo.upBlogTreatise.uuid">{{ treatiseInfo.upBlogTreatise.treatiseTitle }}</nuxt-link></p>
-                <p v-if="treatiseInfo.upBlogTreatise == null">上一篇：<nuxt-link :to="'../knowledge?categoryId=' + treatiseInfo.fId + '&thisCategory=' + treatiseInfo.categoryId">返回列表</nuxt-link></p>
+                <p v-if="treatiseInfo.upBlogTreatise == null">上一篇：<nuxt-link :to="'/knowledge/knowledge?categoryId=' + treatiseInfo.fId + '&thisCategory=' + treatiseInfo.categoryId">返回列表</nuxt-link></p>
 
                 <p v-if="treatiseInfo.downBlogTreatise != null">下一篇：<nuxt-link :to="'' + treatiseInfo.downBlogTreatise.uuid">{{ treatiseInfo.downBlogTreatise.treatiseTitle }}</nuxt-link></p>
-                <p v-if="treatiseInfo.downBlogTreatise == null">下一篇：<nuxt-link :to="'../knowledge?categoryId=' + treatiseInfo.fId + '&thisCategory=' + treatiseInfo.categoryId">返回列表</nuxt-link></p>
+                <p v-if="treatiseInfo.downBlogTreatise == null">下一篇：<nuxt-link :to="'/knowledge/knowledge?categoryId=' + treatiseInfo.fId + '&thisCategory=' + treatiseInfo.categoryId">返回列表</nuxt-link></p>
             </div>
-            <hr>
             <div id="gitalk-container"></div>
         </div>
     </main>
-</template> 
+</template>
+<style>
+.gt-container .gt-meta {
+    height: 60px;
+}
+</style>
+
 <script>
 import axios from 'axios';
+import 'gitalk/dist/gitalk.css';
 import Gitalk from 'gitalk';
 // const MarkdownIt = require("markdown-it");
 

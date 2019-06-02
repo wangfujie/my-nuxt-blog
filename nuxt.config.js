@@ -36,8 +36,7 @@ let config = {
   ** Global CSS
   */
   css: [
-    'element-ui/lib/theme-chalk/index.css',
-    'gitalk/dist/gitalk.css'
+    'element-ui/lib/theme-chalk/index.css'
   ],
 
   /*
