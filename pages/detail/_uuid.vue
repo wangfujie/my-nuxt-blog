@@ -21,7 +21,7 @@
                 <strong>简介</strong>
                 {{ treatiseInfo.treatisePreview }}
             </div>
-            <div v-html="formatEditormd(treatiseInfo.treatiseBody)" v-highlight></div>
+            <div v-html="formatEditormd(treatiseInfo.treatiseBody)"></div>
             <p v-if="treatiseInfo.source == 2">
                 转载自：
                 <a target="_blank" :href="treatiseInfo.reprintUrl">{{ treatiseInfo.reprintUrl }}</a>
@@ -39,22 +39,14 @@
                 <p v-if="treatiseInfo.downBlogTreatise != null">下一篇：<nuxt-link :to="'' + treatiseInfo.downBlogTreatise.uuid">{{ treatiseInfo.downBlogTreatise.treatiseTitle }}</nuxt-link></p>
                 <p v-if="treatiseInfo.downBlogTreatise == null">下一篇：<nuxt-link :to="'../knowledge?categoryId=' + treatiseInfo.fId + '&thisCategory=' + treatiseInfo.categoryId">返回列表</nuxt-link></p>
             </div>
-            <div class="news_pl">
-                <h2>文章评论</h2>
-                <div class="gbko">
-                    <form action="" method="post" name="saypl" onsubmit="">
-                        <div id="plpost">
-                            <p class="saying"><span><nuxt-link to="#2">共有0条评论</nuxt-link></span>暂无评论功能...</p>
-                        </div>
-                    </form>
-                </div>
-            </div>
+            <hr>
+            <div id="gitalk-container"></div>
         </div>
     </main>
-</template>
-
+</template> 
 <script>
 import axios from 'axios';
+import Gitalk from 'gitalk';
 // const MarkdownIt = require("markdown-it");
 
 export default {
@@ -128,6 +120,19 @@ export default {
             }else{
                 SyntaxHighlighter.all();
             }
+        },
+        gitalkComment: function(uuid){
+            //gitalk评论
+            var gitalk = new Gitalk({
+                // gitalk的主要参数
+                clientID: 'f23525c2dbbbc318f6e6',
+                clientSecret: 'de450d38b4e67af7450d893bce46b32848899a0c',
+                repo: 'blog-comment',
+                owner: 'wangfujie',
+                admin: ['wangfujie'],
+                id: uuid,
+            });
+            gitalk.render("gitalk-container");
         }
     },
     watch:{
@@ -144,11 +149,18 @@ export default {
         if (uuid){
             //初始化数据
             this.getTreatiseDetail(uuid);
+            
         }
+        
     },
     mounted() {
-       
+        //加载评论
+        var uuid = this.$route.params.uuid;
+        if (uuid){
+            this.gitalkComment(uuid);
+        }
     }
 }
 
 </script>
+Gitalk,gitalk-comment-2b385c9a1fd84f7286825c99ba2bb124
