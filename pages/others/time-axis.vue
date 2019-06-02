@@ -11,7 +11,7 @@
                 <li v-for="(item, index) in messages" :key="index">
                     <span>{{ item.createTime }}</span>
                     <i>
-                        <nuxt-link :to="'../knowledge/detail/' + item.uuid">{{ item.treatiseTitle }}</nuxt-link>
+                        <nuxt-link :to="'/detail/' + item.uuid">{{ item.treatiseTitle }}</nuxt-link>
                     </i>
                 </li>
             </ul>

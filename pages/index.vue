@@ -4,7 +4,7 @@
         <div class="bloglist">
             <ul id="treatise-list">
                 <li v-for="(item, index) in treatiseList" :key="index" >
-                    <h2><nuxt-link :to="'/knowledge/detail/' + item.uuid" :title="item.treatiseTitle">{{ item.treatiseTitle }}</nuxt-link></h2>
+                    <h2><nuxt-link :to="'/detail/' + item.uuid" :title="item.treatiseTitle">{{ item.treatiseTitle }}</nuxt-link></h2>
                     <p class="blogtext">{{ item.treatisePreview }}</p>
                     <p class="bloginfo">
                         <span>{{ (item.source == 1 ? '原创' : '转载') }}</span>
