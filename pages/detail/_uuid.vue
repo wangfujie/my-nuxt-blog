@@ -6,7 +6,7 @@
             <el-breadcrumb-item>浏览详情</el-breadcrumb-item>
         </el-breadcrumb>
         </div>
-        <div class="infoBox">
+        <div class="infoBox" style="margin: 10px;">
             <h1 class="infoTitle">{{ treatiseInfo.treatiseTitle }}</h1>
             <p class="blogInfo">
                 <span>{{ treatiseInfo.sourceName }}</span>
@@ -21,7 +21,7 @@
                 <strong>简介</strong>
                 {{ treatiseInfo.treatisePreview }}
             </div>
-            <div v-html="formatEditormd(treatiseInfo.treatiseBody)"></div>
+            <div v-html="formatEditormd(treatiseInfo.treatiseBody)" ></div>
             <p v-if="treatiseInfo.source == 2">
                 转载自：
                 <a target="_blank" :href="treatiseInfo.reprintUrl">{{ treatiseInfo.reprintUrl }}</a>
@@ -52,25 +52,26 @@
 <script>
 import axios from 'axios';
 import 'gitalk/dist/gitalk.css';
+import 'highlight.js/styles/darcula.css';
 import Gitalk from 'gitalk';
-// const MarkdownIt = require("markdown-it");
+const MarkdownIt = require("markdown-it");
 
 export default {
-    head: {
-        script: [
-            {src: '/ueditor/SyntaxHighlighter/shCore.js'}
-        ],
-        link: [
-            {rel: 'stylesheet', href: '/ueditor/themes/default/css/ueditor.min.css'},
-            {rel: 'stylesheet', href: '/ueditor/SyntaxHighlighter/shCoreDefault.css'},
-            {rel: 'stylesheet', href: '/ueditor/themes/iframe.css'}
-        ]
-    },
+    // head: {
+    //     script: [
+    //         {src: '/ueditor/SyntaxHighlighter/shCore.js'}
+    //     ],
+    //     link: [
+    //         {rel: 'stylesheet', href: '/ueditor/themes/default/css/ueditor.min.css'},
+    //         {rel: 'stylesheet', href: '/ueditor/SyntaxHighlighter/shCoreDefault.css'},
+    //         {rel: 'stylesheet', href: '/ueditor/themes/iframe.css'}
+    //     ]
+    // },
     layout: 'blog',
     name:'treatiseDetailVue',
     data() {
         return {
-            // md: new MarkdownIt(),
+            md: new MarkdownIt(),
             treatiseInfo:{}
         }
     },
@@ -113,12 +114,13 @@ export default {
             });
         },
         formatEditormd(val) {
-            // return this.md.render(val);
+            //return this.md.render(val);
             return val;
         },
         setTitle(){
             window.document.title = this.treatiseInfo.treatiseTitle + ' - ' + 'Mr · 王的博客';
         },
+        //百度富文本的代码高亮
         initDatePicker : function () {
             //使代码部分高亮显示
             if(typeof(SyntaxHighlighter) == 'undefined'){
@@ -142,12 +144,12 @@ export default {
         }
     },
     watch:{
-        treatiseInfo:function(){
-            //延迟加载，使代码部分高亮显示
-            this.$nextTick(function () {
-                this.initDatePicker();
-            });
-        }
+        // treatiseInfo:function(){
+        //     //延迟加载，使代码部分高亮显示
+        //     this.$nextTick(function () {
+        //         this.initDatePicker();
+        //     });
+        // }
     },
     created: function () {
         var uuid = this.$route.params.uuid;
@@ -155,7 +157,6 @@ export default {
         if (uuid){
             //初始化数据
             this.getTreatiseDetail(uuid);
-            
         }
         
     },
@@ -169,4 +170,3 @@ export default {
 }
 
 </script>
-Gitalk,gitalk-comment-2b385c9a1fd84f7286825c99ba2bb124

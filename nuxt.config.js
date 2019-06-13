@@ -44,8 +44,8 @@ let config = {
   */
   plugins: [
     '@/plugins/element-ui',
-    // '~plugins/highlight',
-    // '~plugins/mavonEditor',
+    '~plugins/highlight',
+    '~plugins/mavonEditor',
     {
       src:'~/plugins/axios'
     },
@@ -69,8 +69,8 @@ let config = {
     [
       '/blog', 
       { 
-        target: 'https://blog.wwolf.wang', 
-        // target: 'http://127.0.0.1:8089', 
+        // target: 'https://blog.wwolf.wang', 
+        target: 'http://127.0.0.1:8088', 
         changeOrigin: true,
         pathRewrite: { '^/blog' : '/blog' }  //重定向请求路径，防止路由、api路径的冲突
       }
@@ -89,9 +89,9 @@ let config = {
 }
 
 // let css = [
-//   '/js/highlightjs/styles/github.min.css',
-//   '/js/markdown/github-markdown.min.css',
-//   '/js/katex/katex.min.css'
+//   '/editor/highlightjs/styles/github.min.css',
+//   '/editor/markdown/github-markdown.min.css',
+//   '/editor/katex/katex.min.css'
 // ]
 
 // css.map(href => {
@@ -103,8 +103,8 @@ let config = {
 
 // let script = [
 //   "//cdn.bootcss.com/jquery/3.2.1/jquery.min.js",
-//   "/js/highlightjs/highlight.min.js",
-//   "/js/katex/katex.min.js"
+//   "/editor/highlightjs/highlight.min.js",
+//   // "/editor/katex/katex.min.js"
 // ]
 
 // script.map(src => {
