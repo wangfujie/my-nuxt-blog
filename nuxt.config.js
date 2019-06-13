@@ -49,7 +49,7 @@ let config = {
     {
       src:'~/plugins/axios'
     },
-    '@/plugins/commom',
+    '@/plugins/commom'
   ],
 
   /*

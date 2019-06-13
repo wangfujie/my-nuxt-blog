@@ -22,6 +22,7 @@
                 {{ treatiseInfo.treatisePreview }}
             </div>
             <div v-html="formatEditormd(treatiseInfo.treatiseBody)" ></div>
+            <!-- <div v-html="formatEditormd(treatiseInfo.treatiseBody)" v-highlight></div> -->
             <p v-if="treatiseInfo.source == 2">
                 转载自：
                 <a target="_blank" :href="treatiseInfo.reprintUrl">{{ treatiseInfo.reprintUrl }}</a>
@@ -52,7 +53,7 @@
 <script>
 import axios from 'axios';
 import 'gitalk/dist/gitalk.css';
-import 'highlight.js/styles/darcula.css';
+import 'mavon-editor/dist/highlightjs/styles/darcula.min.css';
 import Gitalk from 'gitalk';
 const MarkdownIt = require("markdown-it");
 
