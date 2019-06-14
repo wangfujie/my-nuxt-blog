@@ -5,7 +5,7 @@
             <span>路漫漫其修远兮，吾将上下而求索。</span>
         </div>
         <nav>
-            <h2 id="mnavh"><span class="navicon"></span></h2>
+            <!-- <h2 id="mnavh"><span class="navicon"></span></h2> -->
             <el-menu
                 router
                 class="el-menu-demo"

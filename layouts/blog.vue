@@ -158,63 +158,6 @@ nav {
     text-align: center
 }
 
-.navicon {
-    display: block;
-    position: relative;
-    width: 30px;
-    height: 5px;
-    background-color: #333;
-    margin-top: 15px
-}
-
-.navicon:before, .navicon:after {
-    content: '';
-    display: block;
-    width: 30px;
-    height: 5px;
-    position: absolute;
-    background: #333;
-    -webkit-transition-property: margin, -webkit-transform;
-    transition-property: margin, -webkit-transform;
-    transition-property: margin, transform;
-    transition-property: margin, transform, -webkit-transform;
-    -webkit-transition-duration: 300ms;
-    transition-duration: 300ms;
-}
-
-.navicon:before {
-    margin-top: -10px;
-}
-
-.navicon:after {
-    margin-top: 10px;
-}
-
-.open .navicon {
-    background: none
-}
-
-.open .navicon:before {
-    margin-top: 0;
-    -webkit-transform: rotate(45deg);
-    transform: rotate(45deg);
-}
-
-.open .navicon:after {
-    margin-top: 0;
-    -webkit-transform: rotate(-45deg);
-    transform: rotate(-45deg);
-}
-
-.open .navicon:before, .open .navicon:after {
-    content: '';
-    display: block;
-    width: 30px;
-    height: 5px;
-    position: absolute;
-    background: #333;
-}
-
 #starlist li a {
     color: #dedede;
     display: block
