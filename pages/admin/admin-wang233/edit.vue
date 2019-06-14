@@ -5,7 +5,7 @@
                <h3 class="infoTitle">{{ treatiseInfo.treatiseTitle }}</h3>
             </el-form-item>
             <el-form-item>
-                <mavon-editor ref='md' :ishlj="true" v-model="treatiseInfo.markdownContent" @change="changeData"/>
+                <mavon-editor ref='md' :ishlj="true" v-model="treatiseInfo.markdownContent" @imgAdd="$imgAdd" @change="changeData"/>
             </el-form-item>
             <el-form-item style="text-align: center;">
                 <el-button type="primary" @click="updateTreatiseBody">保存</el-button>
@@ -30,6 +30,26 @@ export default {
         }
     },
     methods:{
+        $imgAdd(pos, $file){
+            var self = this;
+            // 第一步.将图片上传到服务器.
+            var formdata = new FormData();
+            formdata.append('image', $file);
+            axios({
+                url: '/blog/uploadImage',
+                method: 'post',
+                data: formdata,
+                headers: { 'Content-Type': 'multipart/form-data' },
+            }).then((result) => {
+                // 第二步.将返回的url替换到文本原位置![...](0) -> ![...](url)
+                /**
+                 * $vm 指为mavonEditor实例，可以通过如下两种方式获取
+                 * 1. 通过引入对象获取: `import {mavonEditor} from ...` 等方式引入后，`$vm`为`mavonEditor`
+                 * 2. 通过$refs获取: html声明ref : `<mavon-editor ref=md ></mavon-editor>，`$vm`为 `this.$refs.md`
+                 */
+                self.$refs.md.$img2Url(pos, result.data);
+            });
+        },
         changeData(value, render){
             //获取html格式内容
             this.treatiseInfo.treatiseBody = render;
