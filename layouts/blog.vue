@@ -141,11 +141,12 @@ a:hover {
     margin: 0 16px 0 0;
 }
 
-.newsbox {
+.aside_box {
     border: #ddd 1px solid;
     background: #fff;
     margin-bottom: 15px;
-    overflow: hidden
+    overflow: hidden;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 }
 
 .hometitle {
@@ -262,7 +263,8 @@ main {
     padding: 16px;
     border: #ddd 1px solid;
     margin-bottom: 16px;
-    position: relative
+    position: relative;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 }
 
 .bloglist li h2 {

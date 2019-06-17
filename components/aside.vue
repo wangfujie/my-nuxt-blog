@@ -1,6 +1,6 @@
 <template>
     <aside class="right_aside">
-        <div class="newsbox">
+        <div class="aside_box">
             <h2 class="hometitle">推荐</h2>
             <ul class="news">
                 <li v-for="(recommend, index) in recommendList" :key="index">
@@ -8,13 +8,13 @@
                 </li>
             </ul>
         </div>
-        <div class="newsbox">
+        <div class="aside_box">
             <h2 class="hometitle">标签云</h2>
             <ul class="cloud">
                 <nuxt-link v-for="(tag, index) in tagList" :key="index" :to="'/tags/tags?tagName=' + tag.tagName" target="_blank" >{{ tag.tagName }}</nuxt-link>
             </ul>
         </div>
-        <div class="newsbox">
+        <div class="aside_box">
             <h2 class="hometitle">阅读排行</h2>
             <ul class="news">
                 <li v-for="(ranking, index) in readRanking" :key="index" >
@@ -22,7 +22,7 @@
                 </li>
             </ul>
         </div>
-        <div class="newsbox">
+        <div class="aside_box">
             <h2 class="hometitle">友情链接</h2>
             <ul class="links">
                 <li v-for="(link, index) in friendLinks" :key="index" >
