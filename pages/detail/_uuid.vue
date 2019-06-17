@@ -53,7 +53,7 @@
 <script>
 import axios from 'axios';
 import 'gitalk/dist/gitalk.css';
-import 'mavon-editor/dist/highlightjs/styles/darcula.min.css';
+import 'mavon-editor/dist/highlightjs/styles/tomorrow-night-eighties.min.css';
 import Gitalk from 'gitalk';
 const MarkdownIt = require("markdown-it");
 
