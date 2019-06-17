@@ -9,6 +9,7 @@
         <BackToTop/>
       </div>
       <Footer/>
+      <Gitter/>
   </div>
 </template>
 
@@ -17,6 +18,7 @@ import Header from '~/components/header.vue'
 import Footer from '~/components/footer.vue'
 import Aside from '~/components/aside.vue'
 import BackToTop from '~/components/backToTop.vue'
+import Gitter from '~/components/gitter.vue'
 
 export default {
     name: 'blog',
@@ -24,7 +26,8 @@ export default {
         Header,
         Footer,
         Aside,
-        BackToTop
+        BackToTop,
+        Gitter
     }
 }
 </script>
@@ -103,13 +106,6 @@ a:hover {
     clear: both
 }
 
-/*header*/
-header {
-    width: 100%;
-    overflow: hidden;
-    background: #fff;
-}
-
 .logo {
     overflow: hidden;
     clear: both;
@@ -129,44 +125,6 @@ header {
     margin-left: 20px
 }
 
-nav {
-    background: #074979;
-    width: 100%;
-    height: 50px;
-    line-height: 50px;
-    clear: both;
-}
-
-#mnavh {
-    display: none;
-    width: 30px;
-    height: 40px;
-    text-align: center;
-    padding: 0 5px
-}
-
-#starlist {
-    margin-left: 10px
-}
-
-#starlist li {
-    float: left;
-    text-align: center;
-    display: block;
-    font-size: 18px;
-    width: 110px;
-    text-align: center
-}
-
-#starlist li a {
-    color: #dedede;
-    display: block
-}
-
-#starlist li a:hover, #starlist #selected, #starlist .selected > a {
-    color: #a5d1f1;
-}
-
 .sub {
     display: none;
     background: #074979;
@@ -176,21 +134,11 @@ nav {
     z-index: 9;
 }
 
-#starlist li:hover ul {
-    display: block;
-    position: absolute;
-}
-
-#starlist .sub li {
-    line-height: 36px;
-    font-size: 16px
-}
-
 /*aside*/
-aside {
+.right_aside {
     width: 250px;
-    float: left;
-    margin: 0 0 0 16px
+    float: right;
+    margin: 0 16px 0 0;
 }
 
 .newsbox {
@@ -292,14 +240,15 @@ aside {
     border-right: #ddd 1px solid;
 }
 
-aside div:last-child {
+.right_aside div:last-child {
     margin-bottom: 0
 }
 
 /*main*/
 main {
-    margin-left: 282px;
-    margin-right: 16px;
+    
+    margin-right: 282px;
+    margin-left: 16px;
 }
 
 .bloglist {
@@ -448,38 +397,6 @@ main {
 
 .place span a {
     padding: 0 5px
-}
-
-.pagelist {
-    text-align: left;
-    color: #666;
-    width: 100%;
-    margin-top: 15px
-}
-
-.pagelist a {
-    color: #666;
-    margin: 5px 2px 0 2px;
-    border: 1px solid #ddd;
-    padding: 5px 10px;
-    background: #FFF;
-    display: inline-block;
-}
-
-.pagelist a:hover {
-    color: #F4650E;
-}
-
-.pagelist > b {
-    border: 1px solid #3690cf;
-    padding: 5px 10px;
-    background: #3690cf;
-    color: #FFF
-}
-
-a.curPage {
-    color: #19585d;
-    font-weight: bold;
 }
 
 .address {
@@ -740,15 +657,6 @@ img#plKeyImg {
     border: #ddd 1px solid
 }
 
-.gbox {
-    padding: 20px;
-    overflow: hidden;
-}
-
-.gbox p {
-    margin-bottom: 10px
-}
-
 p.fbtime {
     color: #000;
 }
@@ -786,130 +694,14 @@ textarea#messageContent {
     width: 100%;
 }
 
-.gbox input[type="submit"] {
-    cursor: pointer;
-    display: block;
-    background: #303030;
-    color: #fff;
-    border: 0;
-    line-height: 30px;
-    padding: 0 20px;
-    border-radius: 5px;
-    float: left;
-}
-
-/*列表展示*/
-.piclistshow {
-    background: #FFF;
-    padding: 30px;
-    border: #ddd 1px solid;
-    overflow: hidden;
-    position: relative
-}
-
-.piclistshow ul {
-    overflow: hidden;
-}
-
-.piclistshow ul:before {
-    position: absolute;
-    width: 1px;
-    height: 100%;
-    background: #fff;
-    content: "";
-    left: 30px;
-    top: 0;
-    z-index: 2
-}
-
-.piclistshow ul:after {
-    position: absolute;
-    width: 100%;
-    height: 1px;
-    background: #fff;
-    content: "";
-    left: 0;
-    bottom: 30px
-}
-
-.piclistshow ul li {
-    width: 25%;
-    float: left;
-    overflow: hidden;
-    padding-top: 40px;
-    position: relative;
-}
-
-.piclistshow ul li:before {
-    position: absolute;
-    width: 1px;
-    height: 100%;
-    background: #ddd;
-    content: "";
-    left: 0;
-    top: 0
-}
-
-.piclistshow ul li:after {
-    position: absolute;
-    width: 100%;
-    height: 1px;
-    background: #ddd;
-    content: "";
-    left: 0;
-    bottom: 0
-}
-
-.piclistshow ul li:hover {
-    background: #fafafa
-}
-
-.piclistshow .picimg {
-    width: 100%;
-    display: table-cell;
-    margin: auto;
-    vertical-align: middle;
-    text-align: center;
-    padding: 0px 10px;
-}
-
-.picimg img {
-    max-height: 100%;
-    margin: auto;
-    max-width: 100%;
-}
-
-.pictxt {
-    padding: 15px 20px 0;
-    line-height: 25px;
-    text-align: center;
-    height: 80px;
-    overflow: hidden;
-}
-
-.pictxt h3 {
-    font-size: 14px;
-    font-weight: normal;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    -webkit-box-orient: vertical;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-}
-
 /*
 
 media
 
 */
-@media screen and (min-width: 768px) and (max-width: 959px) {
-    #starlist li {
-        width: 90px;
-    }
-}
 
 @media only screen and (min-width: 480px) and (max-width: 767px) {
-    aside {
+    .right_aside,.gitter-open-chat-button,.gitter-chat-embed,.blogMenu {
         display: none
     }
 
@@ -937,45 +729,10 @@ media
         display: none
     }
 
-    .pagelist {
-        text-align: center
-    }
-
     nav {
         height: auto;
         background: none;
         line-height: 36px
-    }
-
-    #mnavh {
-        position: absolute;
-        display: block;
-        top: 8px;
-        right: 10px;
-    }
-
-    #starlist {
-        display: none;
-        background: rgba(0, 0, 0, .5);
-        width: 100%;
-        overflow: hidden;
-        position: absolute;
-        z-index: 9;
-        margin-left: 0
-    }
-
-    #starlist li {
-        display: block;
-        padding: 0 0 0 0;
-        width: 60%;
-        background: #fff;
-        border-bottom: #f5f5f5 1px solid;
-        overflow: hidden;
-        font-weight: bold
-    }
-
-    #starlist li a {
-        color: #444
     }
 
     .sub {
@@ -988,34 +745,10 @@ media
         padding-bottom: 0
     }
 
-    #starlist li a:hover, #starlist #selected, .selected > a {
-        background: #3690cf;
-        display: block;
-        color: #fff;
-    }
-
-    #starlist .sub li {
-        width: 100%;
-        border-bottom: none;
-        font-weight: normal
-    }
-
-    #starlist li:last-child {
-        padding-bottom: 100%
-    }
-
-    #starlist .sub li:last-child {
-        padding-bottom: 0
-    }
-
-    #starlist li:hover ul {
-        display: block;
-        position: inherit;
-    }
 }
 
 @media only screen and (max-width: 479px) {
-    aside {
+    .right_aside,.gitter-open-chat-button,.gitter-chat-embed,.blogMenu {
         display: none
     }
 
@@ -1055,45 +788,10 @@ media
         display: none
     }
 
-    .pagelist {
-        text-align: center
-    }
-
     nav {
         height: auto;
         background: none;
         line-height: 40px
-    }
-
-    #mnavh {
-        position: absolute;
-        display: block;
-        top: 8px;
-        right: 10px;
-    }
-
-    #starlist {
-        display: none;
-        background: rgba(0, 0, 0, .5);
-        width: 100%;
-        overflow: hidden;
-        position: absolute;
-        z-index: 9;
-        margin-left: 0
-    }
-
-    #starlist li {
-        display: block;
-        padding: 0 0 0 0;
-        width: 60%;
-        background: #fff;
-        border-bottom: #f5f5f5 1px solid;
-        overflow: hidden;
-        font-weight: bold
-    }
-
-    #starlist li a {
-        color: #444
     }
 
     .sub {
@@ -1104,31 +802,6 @@ media
         overflow: hidden;
         background: none;
         padding-bottom: 0
-    }
-
-    #starlist li a:hover, #starlist #selected, .selected > a {
-        background: #3690cf;
-        display: block;
-        color: #fff;
-    }
-
-    #starlist .sub li {
-        width: 100%;
-        border-bottom: none;
-        font-weight: normal
-    }
-
-    #starlist li:last-child {
-        padding-bottom: 100%
-    }
-
-    #starlist .sub li:last-child {
-        padding-bottom: 0
-    }
-
-    #starlist li:hover ul {
-        display: block;
-        position: inherit;
     }
 
     .fb ul {

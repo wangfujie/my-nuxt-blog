@@ -1,5 +1,5 @@
 <template>
-    <aside>
+    <aside class="right_aside">
         <div class="newsbox">
             <h2 class="hometitle">推荐</h2>
             <ul class="news">
