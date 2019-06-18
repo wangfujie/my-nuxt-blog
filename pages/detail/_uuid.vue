@@ -33,6 +33,9 @@
                     (<b>{{ treatiseInfo.praiseNum }}</b>)
                 </p>
             </div>
+            <div class="share">
+                
+            </div>
             <div class="nextinfo">
                 <p v-if="treatiseInfo.upBlogTreatise != null">上一篇：<nuxt-link :to="'' + treatiseInfo.upBlogTreatise.uuid">{{ treatiseInfo.upBlogTreatise.treatiseTitle }}</nuxt-link></p>
                 <p v-if="treatiseInfo.upBlogTreatise == null">上一篇：<nuxt-link :to="'/knowledge/knowledge?categoryId=' + treatiseInfo.fId + '&thisCategory=' + treatiseInfo.categoryId">返回列表</nuxt-link></p>
