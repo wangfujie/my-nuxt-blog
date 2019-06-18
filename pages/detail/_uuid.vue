@@ -28,13 +28,11 @@
                 <a target="_blank" :href="treatiseInfo.reprintUrl">{{ treatiseInfo.reprintUrl }}</a>
             </p>
             <div class="share">
-                <p class="praise">
+                <div class="praise">
                     <a href="#2" @click="addPraiseNum"> 很赞哦！</a>
                     (<b>{{ treatiseInfo.praiseNum }}</b>)
-                </p>
-            </div>
-            <div class="share">
-                
+                </div>
+                <div id="socialShare" style="text-align: right;"></div>
             </div>
             <div class="nextinfo">
                 <p v-if="treatiseInfo.upBlogTreatise != null">上一篇：<nuxt-link :to="'' + treatiseInfo.upBlogTreatise.uuid">{{ treatiseInfo.upBlogTreatise.treatiseTitle }}</nuxt-link></p>
@@ -57,6 +55,8 @@
 import axios from 'axios';
 import 'gitalk/dist/gitalk.css';
 import 'mavon-editor/dist/highlightjs/styles/tomorrow-night-eighties.min.css';
+import 'social-share.js/dist/css/share.min.css';
+import 'social-share.js/dist/js/social-share.min.js';
 import Gitalk from 'gitalk';
 const MarkdownIt = require("markdown-it");
 
@@ -92,6 +92,8 @@ export default {
                     self.treatiseInfo = res.data.data.object;
                     //设置title
                     self.setTitle();
+                    //设置分享
+                    self.aSocialShare();
                 }
             });
         },
@@ -145,6 +147,16 @@ export default {
                 id: uuid,
             });
             gitalk.render("gitalk-container");
+        },
+        aSocialShare:function(){
+            //一键分享
+            var title = this.treatiseInfo.treatiseTitle + ' - ' + 'Mr · 王的博客';
+            var $config = {
+                title: title,
+                description: this.treatiseInfo.treatisePreview,
+                sites: ['qzone', 'qq', 'weibo','wechat']
+            }
+            socialShare('#socialShare', $config);
         }
     },
     watch:{
@@ -162,7 +174,6 @@ export default {
             //初始化数据
             this.getTreatiseDetail(uuid);
         }
-        
     },
     mounted() {
         //加载评论

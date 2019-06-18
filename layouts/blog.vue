@@ -481,10 +481,6 @@ main {
     height: auto;
 }
 
-.share {
-    padding: 20px;
-}
-
 .diggit {
     width: 160px;
     margin: auto;
@@ -817,6 +813,10 @@ media
     .address a {
         padding: 0 3px;
     }
+}
+
+.share {
+    padding: 20px;
 }
 
 .praise {
