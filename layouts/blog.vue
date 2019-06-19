@@ -507,6 +507,10 @@ main {
     padding: 4px 0;
 }
 
+.nextinfo p a,i {
+    color: #2479cc;
+}
+
 /*otherlink*/
 .otherlink {
     width: 100%;
@@ -832,5 +836,12 @@ media
 
 .praise a {
     color: #fff;
+}
+
+.el-timeline-item__node--large{
+    left: -7px; 
+    width: 24px; 
+    height: 24px;
+    background-color: #38b7ea;
 }
 </style>

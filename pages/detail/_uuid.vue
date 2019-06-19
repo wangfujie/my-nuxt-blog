@@ -35,11 +35,20 @@
                 <div id="socialShare" style="text-align: right;"></div>
             </div>
             <div class="nextinfo">
-                <p v-if="treatiseInfo.upBlogTreatise != null">上一篇：<nuxt-link :to="'' + treatiseInfo.upBlogTreatise.uuid">{{ treatiseInfo.upBlogTreatise.treatiseTitle }}</nuxt-link></p>
-                <p v-if="treatiseInfo.upBlogTreatise == null">上一篇：<nuxt-link :to="'/knowledge/knowledge?categoryId=' + treatiseInfo.fId + '&thisCategory=' + treatiseInfo.categoryId">返回列表</nuxt-link></p>
-
-                <p v-if="treatiseInfo.downBlogTreatise != null">下一篇：<nuxt-link :to="'' + treatiseInfo.downBlogTreatise.uuid">{{ treatiseInfo.downBlogTreatise.treatiseTitle }}</nuxt-link></p>
-                <p v-if="treatiseInfo.downBlogTreatise == null">下一篇：<nuxt-link :to="'/knowledge/knowledge?categoryId=' + treatiseInfo.fId + '&thisCategory=' + treatiseInfo.categoryId">返回列表</nuxt-link></p>
+                <el-row type="flex" class="row-bg" justify="space-between">
+                    <el-col :span="18">
+                        <p v-if="treatiseInfo.upBlogTreatise != null" >
+                            <i class="el-icon-arrow-left"></i>
+                            <nuxt-link :to="'' + treatiseInfo.upBlogTreatise.uuid">{{ treatiseInfo.upBlogTreatise.treatiseTitle }}</nuxt-link>
+                        </p>
+                    </el-col>
+                    <el-col :span="18">
+                        <p v-if="treatiseInfo.downBlogTreatise != null" style="float:right;">
+                            <nuxt-link :to="'' + treatiseInfo.downBlogTreatise.uuid">{{ treatiseInfo.downBlogTreatise.treatiseTitle }}</nuxt-link>
+                            <i class="el-icon-arrow-right"></i>
+                        </p>
+                    </el-col>
+                </el-row>
             </div>
             <div id="gitalk-container"></div>
         </div>
