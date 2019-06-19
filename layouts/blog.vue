@@ -406,11 +406,11 @@ main {
     overflow: hidden;
     margin-bottom: 8px;
     border: #ddd 1px solid;
-    padding: 5px 0 5px 25px
+    padding: 5px 0 5px 25px;
 }
 
 .address a {
-    padding: 0 8px
+    padding: 0 8px;
 }
 
 /*info*/
@@ -843,5 +843,24 @@ media
     width: 24px; 
     height: 24px;
     background-color: #38b7ea;
+}
+.el-timeline-item {
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.archives-card {
+    float: right;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.archives-card label {
+    padding-left: 10px;
+}
+
+.archives-card label span{
+    padding-left: 5px;
+    color: #909399;
 }
 </style>
