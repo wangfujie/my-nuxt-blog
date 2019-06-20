@@ -258,13 +258,13 @@ main {
 }
 
 .bloglist li {
-    background: #FFF;
-    overflow: hidden;
+    /* background: #FFF;
+    overflow: hidden; */
     padding: 16px;
-    border: #ddd 1px solid;
+    /* border: #ddd 1px solid;
     margin-bottom: 16px;
     position: relative;
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12); */
 }
 
 .bloglist li h2 {
@@ -288,11 +288,13 @@ main {
 }
 
 .bloglist .blogtext {
-    margin-bottom: 10px
+    margin-bottom: 10px;
+    /* height: 150px; */
+    overflow: hidden;
 }
 
 .bloglist .bloginfo {
-    text-align: right;
+    text-align: left;
     color: #A8B1BA;
 }
 

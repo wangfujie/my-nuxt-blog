@@ -4,18 +4,26 @@
         <div class="bloglist">
             <ul id="treatise-list">
                 <li v-for="(item, index) in treatiseList" :key="index" >
-                    <h2><nuxt-link :to="'/detail/' + item.uuid" :title="item.treatiseTitle">{{ item.treatiseTitle }}</nuxt-link></h2>
-                    <p class="blogtext">{{ item.treatisePreview }}</p>
-                    <p class="bloginfo">
-                        <span>{{ (item.source == 1 ? '原创' : '转载') }}</span>
-                        <span>{{ item.createTime }}</span>
-                        <span>[<nuxt-link :to="'/knowledge/knowledge?categoryId='+ item.fId + '&thisCategory=' + item.categoryId">{{ item.categoryName }}</nuxt-link>]</span>
-                        <span>阅读({{ item.readNum }})</span>
-                    </p>
+                    <el-card class="box-card">
+                        <div slot="header" class="clearfix">
+                            <h2><nuxt-link :to="'/detail/' + item.uuid" :title="item.treatiseTitle">{{ item.treatiseTitle }}</nuxt-link></h2>
+                            <div style="color:#A8B1BA;margin-bottom: 10px;">{{ item.createTime }}</div>
+                            <div class="blogtext">{{ item.treatisePreview }}</div>
+                            <!-- <div class="blogtext" v-html="item.treatiseBody" ></div> -->
+                        </div>
+                        <p class="bloginfo">
+                            <span>{{ (item.source == 1 ? '原创' : '转载') }}</span>
+                            
+                            <span>[<nuxt-link :to="'/knowledge/knowledge?categoryId='+ item.fId + '&thisCategory=' + item.categoryId">{{ item.categoryName }}</nuxt-link>]</span>
+                            <span>阅读({{ item.readNum }})</span>
+                            <nuxt-link class="el-button el-button--primary" :to="'/detail/' + item.uuid" style="float:right;line-height: 6px;">阅读全文</nuxt-link>
+                        </p>
+                    </el-card>
+                    
                 </li>
             </ul>
         </div>
-        <!-- <div ref="pageListDiv" class="m-style pageList"></div> -->
+
         <el-pagination style="margin-top: 15px;"
             background
             layout="prev, pager, next"

@@ -18,7 +18,8 @@
     "markdown-it": "^8.4.2",
     "mavon-editor": "^2.7.4",
     "nuxt": "^2.6.3",
-    "social-share.js": "^1.0.16"
+    "social-share.js": "^1.0.16",
+    "vue-infinite-scroll": "^2.0.2"
   },
   "devDependencies": {
     "@nuxtjs/axios": "^5.4.1",
