@@ -136,7 +136,7 @@ a:hover {
 
 /*aside*/
 .right_aside {
-    width: 250px;
+    width: 340px;
     float: right;
     margin: 0 16px 0 0;
 }
@@ -247,8 +247,7 @@ a:hover {
 
 /*main*/
 main {
-    
-    margin-right: 282px;
+    margin-right: 372px;
     margin-left: 16px;
 }
 
@@ -415,22 +414,9 @@ main {
     padding: 0 8px;
 }
 
-/*info*/
-.infosbox {
-    overflow: hidden;
-    background: #FFF;
-    border: #ddd 1px solid;
-    padding: 16px;
-}
-
 .infotitle {
     font-size: 24px;
     margin-bottom: 10px
-}
-
-.infosbox .bloginfo span {
-    color: #A8B1BA;
-    margin-right: 8px;
 }
 
 .news_about {
@@ -467,20 +453,6 @@ main {
 
 .tags {
     margin: 10px 0;
-}
-
-.infosbox .news_con {
-    line-height: 1.8;
-    text-align: justify;
-}
-
-.infosbox .news_con p {
-    margin-bottom: 15px
-}
-
-.infosbox .news_con img {
-    max-width: 650px;
-    height: auto;
 }
 
 .diggit {
@@ -713,10 +685,6 @@ media
         margin: 0
     }
 
-    .infosbox .news_con img {
-        width: 100%
-    }
-
     .piclistshow ul li {
         width: 33.3%;
     }
@@ -725,7 +693,7 @@ media
         padding: 10px
     }
 
-    .bloglist li, .place, .address, .infosbox, .piclistshow, .gbinfos, .timebox {
+    .bloglist li, .place, .address, .piclistshow, .gbinfos, .timebox {
         border: none
     }
 
@@ -760,10 +728,6 @@ media
         margin: 0
     }
 
-    .infosbox .news_con img {
-        width: 100%
-    }
-
     .piclistshow {
         padding: 10px
     }
@@ -784,7 +748,7 @@ media
         padding: 10px
     }
 
-    .bloglist li, .place, .address, .infosbox, .piclistshow, .gbinfos, .timebox {
+    .bloglist li, .place, .address, .piclistshow, .gbinfos, .timebox {
         border: none
     }
 
@@ -864,5 +828,9 @@ media
 .archives-card label span{
     padding-left: 5px;
     color: #909399;
+}
+
+.el-divider--horizontal{
+    margin: 15px 0;
 }
 </style>
