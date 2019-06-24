@@ -3,21 +3,29 @@
         <div class="address">
             您现在的位置是：<nuxt-link to='/'>首页</nuxt-link>&nbsp;>&nbsp;标签信息列表&nbsp;>&nbsp;
         </div>
-        <div class="bloglist">
-            <ul>
-                <li v-for="(treatise,index) in treatiseList" :key="index">
-                    <h2><nuxt-link :to="'/detail/' + treatise.uuid">{{ treatise.treatiseTitle }}</nuxt-link></h2>
-                    <p class="blogtext">{{ treatise.treatisePreview }}</p>
-                    <p class="bloginfo">
-                        <span>{{ treatise.sourceName }}</span>
-                        <span>{{ treatise.createTime }}</span>
-                        <span>[<nuxt-link to="#2">{{ treatise.categoryName }}</nuxt-link>]</span>
-                        <span>阅读({{ treatise.readNum }})</span>
-                    </p>
-                </li>
-            </ul>
+        <div class="block">
+            <el-timeline>
+                <el-timeline-item size="large" icon="el-icon-collection">
+                    <span style="font-size: 20px;">{{ search.tagInfo }}</span>
+                </el-timeline-item>
+                <el-timeline-item v-for="(treatise, index) in treatiseList" :key="index" color="#38b7ea">
+                    <el-card>
+                        <div slot="header" class="clearfix">
+                            <h3><nuxt-link :to="'/detail/' + treatise.uuid">{{ treatise.treatiseTitle }}</nuxt-link></h3>
+                        </div>
+                        <div>
+                            {{ treatise.treatisePreview }}
+                        </div>
+                        <div class="archives-card">
+                            <label><i class="el-icon-date"></i><span>{{ treatise.createTime }}</span></label>
+                            <label><i class="el-icon-wind-power"></i><span>{{ treatise.categoryName }}</span></label>
+                            <label><i class="el-icon-collection-tag"></i><span>{{ treatise.tags }}</span></label>
+                            <label><i class="el-icon-reading"></i><span>{{ treatise.readNum }}</span></label>
+                        </div>
+                    </el-card>
+                </el-timeline-item>
+            </el-timeline>
         </div>
-        <!-- <div ref="pageListDiv" class="m-style pageList"></div> -->
         <el-pagination style="margin-top: 15px;"
             background
             layout="prev, pager, next"
