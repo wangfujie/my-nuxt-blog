@@ -343,7 +343,7 @@ main {
 .place {
     overflow: hidden;
     background: #fff;
-    margin-bottom: 10px;
+    margin: 10px 15px;
     border: #ddd 1px solid;
     padding: 5px 10px
 }

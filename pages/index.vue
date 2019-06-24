@@ -19,7 +19,6 @@
                             <nuxt-link class="el-button el-button--primary" :to="'/detail/' + item.uuid" style="float:right;line-height: 6px;">阅读全文</nuxt-link>
                         </p>
                     </el-card>
-                    
                 </li>
             </ul>
         </div>
