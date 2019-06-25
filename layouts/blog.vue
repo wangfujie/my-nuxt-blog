@@ -2,10 +2,8 @@
   <div>
       <Header/>
       <div>
-        <div class="blank"></div>
         <Aside/>
         <nuxt />
-        <div class="blank"></div>
         <BackToTop/>
       </div>
       <Footer/>
@@ -98,14 +96,6 @@ a:hover {
     clear: both;
 }
 
-.blank {
-    height: 16px;
-    overflow: hidden;
-    width: 100%;
-    margin: auto;
-    clear: both
-}
-
 .logo {
     overflow: hidden;
     clear: both;
@@ -138,7 +128,7 @@ a:hover {
 .right_aside {
     width: 340px;
     float: right;
-    margin: 0 16px 0 0;
+    margin: 16px 16px 16px 0;
 }
 
 .aside_box {

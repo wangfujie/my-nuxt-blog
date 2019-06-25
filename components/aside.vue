@@ -125,14 +125,14 @@ export default {
     },
     mounted() {
         var self = this;
-        this.timer = setInterval(function() {
+        setTimeout(function() {
             self.runTime = self.comsys.timeFn(self.aboutMeInfo.domainTime);
         }, 1000);
     },
     beforeDestroy(){
-        if(this.timer){
-            clearInterval(this.timer);
-        }
+        // if(this.timer){
+        //     clearInterval(this.timer);
+        // }
     }
 }
 </script>
