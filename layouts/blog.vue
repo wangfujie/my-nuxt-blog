@@ -346,18 +346,18 @@ main {
 .place .categoryList {
     font-size: 16px;
     font-weight: normal;
-    text-align: center;
+    /* text-align: center; */
 }
 
 .place .categoryList a:hover {
     cursor: pointer;
 }
 
-.place .categoryList:hover {
+.place .categoryList a:hover {
     position: relative
 }
 
-.place .categoryList:hover:after {
+.place .categoryList a:hover:after {
     position: absolute;
     width: 100%;
     height: 3px;
@@ -367,12 +367,12 @@ main {
     left: 0
 }
 
-#thisCategory {
+#thisCategory a {
     color: #222;
     position: relative
 }
 
-#thisCategory:after {
+#thisCategory a:after {
     position: absolute;
     width: 100%;
     height: 3px;
