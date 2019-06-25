@@ -4,7 +4,7 @@
             <h1><nuxt-link to="/">Mr · 王</nuxt-link></h1>
             <span>路漫漫其修远兮，吾将上下而求索。</span>
         </div>
-        <nav class="blogMenu" style="line-height: 60px;">
+        <nav class="blogMenu">
             <!-- <h2 id="mnavh"><span class="navicon"></span></h2> -->
             <el-menu
                 router
@@ -22,7 +22,7 @@
                         <el-menu-item v-for="(subNode, index) in head.subNodeList" :key="index" :index="subNode.linkUrl">{{ subNode.categoryName }}</el-menu-item>
                     </el-submenu>
                 </template>
-                <div style="float: right; padding-right: 16px;">
+                <div class="head_search">
                     <el-input v-model="keyWork" placeholder="请输入内容" clearable>
                         <el-button slot="append" icon="el-icon-search" @click="searchData()"></el-button>
                     </el-input>

@@ -3,7 +3,7 @@
         <div class="address">
             您现在的位置是：<nuxt-link to='/'>首页</nuxt-link>&nbsp;>&nbsp;标签信息列表&nbsp;>&nbsp;
         </div>
-        <div class="block">
+        <div class="archivesTimeLine">
             <el-timeline>
                 <el-timeline-item size="large" icon="el-icon-collection">
                     <span style="font-size: 20px;">{{ search.tagInfo }}</span>

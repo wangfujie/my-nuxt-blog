@@ -6,7 +6,7 @@
                 <el-breadcrumb-item>归档</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
-        <div class="block">
+        <div class="archivesTimeLine">
             <el-timeline>
                 <el-timeline-item v-for="(item, index) in messages" :key="index" :size='item.type == 1 ? "large":no' 
                 :icon='item.type == 1 ? "el-icon-date":n'

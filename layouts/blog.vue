@@ -241,6 +241,17 @@ main {
     margin-left: 16px;
 }
 
+.blogMenu{
+    line-height: 60px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.head_search{
+    float: right; 
+    padding-right: 16px;
+}
+
 .bloglist {
     width: 100%;
     overflow: hidden;
@@ -393,15 +404,19 @@ main {
 }
 
 .address {
-    background: #fff;
     overflow: hidden;
-    margin-bottom: 8px;
+    background: #fff;
+    margin: 10px 15px;
     border: #ddd 1px solid;
-    padding: 5px 0 5px 25px;
+    padding: 5px 10px;
 }
 
 .address a {
-    padding: 0 8px;
+    padding: 0 5px;
+}
+
+.archivesTimeLine {
+    margin: 10px 15px;
 }
 
 .infotitle {
@@ -667,7 +682,7 @@ media
 */
 
 @media only screen and (min-width: 480px) and (max-width: 767px) {
-    .right_aside,.gitter-open-chat-button,.gitter-chat-embed,.blogMenu {
+    .right_aside,.gitter-open-chat-button,.gitter-chat-embed,.head_search {
         display: none
     }
 
@@ -710,7 +725,7 @@ media
 }
 
 @media only screen and (max-width: 479px) {
-    .right_aside,.gitter-open-chat-button,.gitter-chat-embed,.blogMenu {
+    .right_aside,.gitter-open-chat-button,.gitter-chat-embed,.head_search {
         display: none
     }
 
