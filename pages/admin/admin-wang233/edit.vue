@@ -1,6 +1,6 @@
 <template>
     <div style="margin: 0 10px;">
-        <el-form :model="treatiseInfo" :rules="rules" ref="blogLeaveMessage" class="demo-ruleForm">     
+        <!-- <el-form :model="treatiseInfo" :rules="rules" ref="blogLeaveMessage" class="demo-ruleForm">     
             <el-form-item label="">
                <h3 class="infoTitle">{{ treatiseInfo.treatiseTitle }}</h3>
             </el-form-item>
@@ -10,7 +10,7 @@
             <el-form-item style="text-align: center;">
                 <el-button type="primary" @click="updateTreatiseBody">保存</el-button>
             </el-form-item>
-        </el-form>
+        </el-form> -->
     </div>
 </template>
 
