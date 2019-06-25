@@ -1,9 +1,11 @@
 <template>
     <main>
         <div class="place">
-            <h1 id="categoryList">
-                <a v-for="(category, index) in categoryList" :key="index" @click="changeCategroy(category.id)" :id="category.tagId">{{ category.categoryName }}</a>
-            </h1>
+            <el-row>
+                <el-col class="categoryList" :span="spanSize" v-for="(category, index) in categoryList" :key="index" :id="category.tagId">
+                    <a @click="changeCategroy(category.id)" >{{ category.categoryName }}</a>
+                </el-col>
+            </el-row>
         </div>
         <div class="bloglist">
             <ul id="treatise-list">
@@ -19,7 +21,6 @@
                 </li>
             </ul>
         </div>
-        <!-- <div ref="pageListDiv" class="m-style pageList"></div> -->
         <el-pagination style="margin-top: 15px;"
             background
             layout="prev, pager, next"
@@ -51,7 +52,8 @@ export default {
                 total:0,
                 currentPage:1,
                 pageSize:10
-            }
+            },
+            spanSize: "6"
         }
     },
     methods:{
@@ -68,6 +70,7 @@ export default {
                         }
                     });
                     self.categoryList = res.data.data.list;
+                    self.spanSize = Math.floor(24 / self.categoryList.length);
                 }
             });
         },

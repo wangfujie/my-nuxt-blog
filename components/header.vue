@@ -11,8 +11,7 @@
                 mode="horizontal"
                 background-color="#074979"
                 text-color="#dedede"
-                active-text-color="#ffd04b"
-                >
+                active-text-color="#ffd04b">
                 <el-menu-item index="/">首页</el-menu-item>
                 <template v-for="(head,index) in headMenu">
                     <el-menu-item :key="index" v-if="head.subNodeList != null && head.subNodeList.length <= 0" :index="head.linkUrl">{{ head.categoryName }}</el-menu-item>
