@@ -407,11 +407,6 @@ main {
     margin: 10px 15px;
 }
 
-.infotitle {
-    font-size: 24px;
-    margin-bottom: 10px
-}
-
 .news_about {
     color: #888888;
     border: 1px solid #F3F3F3;
