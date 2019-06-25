@@ -4,8 +4,7 @@
             <h1><nuxt-link to="/">Mr · 王</nuxt-link></h1>
             <span>路漫漫其修远兮，吾将上下而求索。</span>
         </div>
-        <nav class="blogMenu">
-            <!-- <h2 id="mnavh"><span class="navicon"></span></h2> -->
+        <nav style="line-height: 60px;">
             <el-menu
                 router
                 class="el-menu-demo"
@@ -13,7 +12,7 @@
                 background-color="#074979"
                 text-color="#dedede"
                 active-text-color="#ffd04b"
-                style="padding-left: 15px;">
+                >
                 <el-menu-item index="/">首页</el-menu-item>
                 <template v-for="(head,index) in headMenu">
                     <el-menu-item :key="index" v-if="head.subNodeList != null && head.subNodeList.length <= 0" :index="head.linkUrl">{{ head.categoryName }}</el-menu-item>

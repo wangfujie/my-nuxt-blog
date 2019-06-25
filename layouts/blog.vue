@@ -241,12 +241,6 @@ main {
     margin-left: 16px;
 }
 
-.blogMenu{
-    line-height: 60px;
-    overflow: hidden;
-    white-space: nowrap;
-}
-
 .head_search{
     float: right; 
     padding-right: 16px;

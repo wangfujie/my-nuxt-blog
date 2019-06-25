@@ -23,7 +23,7 @@
             </ul>
         </div>
 
-        <el-pagination style="margin-top: 15px;"
+        <el-pagination style="margin: 10px 0;"
             background
             layout="prev, pager, next"
             @current-change="getTreatiseList"
