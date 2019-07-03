@@ -16,9 +16,16 @@ let config = {
     title: 'Mr · 王的个人博客',
     meta: [
       { charset: 'utf-8' },
-      { name: 'keywords', content: 'Mr · 王的个人博客' },
-      { name: 'description', content: '路漫漫其修远兮，吾将上下而求索。' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { 
+        hid: 'keywords', 
+        name: 'keywords', 
+        content: 'Mr王,Mr·王,Mr · 王的个人博客,Mr王的博客,个人博客,wwolf,blog,wang' },
+      { 
+        hid: 'description', 
+        name: 'description', 
+        content: '记录日常学习和分享的个人博客，专注于java学习开发，学习任重而道远，路漫漫其修远兮，吾将上下而求索。' 
+      },
       { hid: 'description', name: 'description', content: pkg.description }
     ],
     link: [
