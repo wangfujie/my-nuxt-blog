@@ -55,9 +55,9 @@
     </main>
 </template>
 <style>
-.gt-container .gt-meta {
-    height: 60px;
-}
+    .gt-container .gt-meta {
+        height: 60px;
+    }
 </style>
 
 <script>
@@ -213,6 +213,9 @@ export default {
                 },
                 {
                     src: "https://c.mipcdn.com/extensions/platform/v1/mip-cambrian/mip-cambrian.js"
+                },
+                {
+                    src: "https://zz.bdstatic.com/linksubmit/push.js"
                 }
             ],
             __dangerouslyDisableSanitizers: ["script"]

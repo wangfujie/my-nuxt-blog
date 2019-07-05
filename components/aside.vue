@@ -18,16 +18,16 @@
 
                 <el-divider></el-divider>
                 <el-row style="text-align: center;">
-                    <el-col span="6">
+                    <el-col :span="6">
                         <a href="https://github.com/wangfujie" target="_blank"><el-image src="/images/about/github.png" style="width: 35px; height: 35px" fit="contain"></el-image></a>
                     </el-col>
-                    <el-col span="6">
+                    <el-col :span="6">
                         <a href="https://weibo.com/2664230685/profile" target="_blank"><el-image src="/images/about/weibo.png" style="width: 35px; height: 35px" fit="contain"></el-image></a>
                     </el-col>
-                    <el-col span="6">
+                    <el-col :span="6">
                         <a href="https://twitter.com/wwolfwang" target="_blank"><el-image src="/images/about/twitter.png" style="width: 35px; height: 35px" fit="contain"></el-image></a>
                     </el-col>
-                    <el-col span="6">
+                    <el-col :span="6">
                         <a href="https://blog.csdn.net/a7847" target="_blank"><el-image src="/images/about/csdn.png" style="width: 35px; height: 35px" fit="contain"></el-image></a>
                     </el-col>
                 </el-row>
