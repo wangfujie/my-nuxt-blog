@@ -25,8 +25,27 @@ let config = {
         hid: 'description', 
         name: 'description', 
         content: '记录日常学习和分享的个人博客，专注于java学习开发，学习任重而道远，路漫漫其修远兮，吾将上下而求索。' 
+      }, 
+      {
+        property: 'og:locale',
+        content: 'zh_CN'
       },
-      { hid: 'description', name: 'description', content: pkg.description }
+      {
+        property: 'og:type',
+        content: 'website',
+      }, 
+      {
+        property: 'twitter:card',
+        content: 'summary'
+      },
+      {
+        property: 'twitter:site',
+        content: '@wwolfwang'
+      },
+      {
+        property: 'twitter:creator',
+        content: '@wwolfwang'
+      }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/images/logo.png' }
@@ -76,8 +95,8 @@ let config = {
     [
       '/blog', 
       { 
-        // target: 'https://blog.wwolf.wang', 
-        target: 'http://127.0.0.1:8088', 
+        target: 'https://blog.wwolf.wang', 
+        // target: 'http://127.0.0.1:8088', 
         changeOrigin: true,
         pathRewrite: { '^/blog' : '/blog' }  //重定向请求路径，防止路由、api路径的冲突
       }

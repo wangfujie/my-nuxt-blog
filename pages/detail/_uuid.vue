@@ -61,21 +61,6 @@
 </style>
 
 <script>
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-    }
-    else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>
-
-<script>
 import axios from 'axios';
 import 'gitalk/dist/gitalk.css';
 import 'mavon-editor/dist/highlightjs/styles/tomorrow-night-eighties.min.css';
@@ -85,42 +70,43 @@ import Gitalk from 'gitalk';
 const MarkdownIt = require("markdown-it");
 
 export default {
-    // head: {
-    //     script: [
-    //         {src: '/ueditor/SyntaxHighlighter/shCore.js'}
-    //     ],
-    //     link: [
-    //         {rel: 'stylesheet', href: '/ueditor/themes/default/css/ueditor.min.css'},
-    //         {rel: 'stylesheet', href: '/ueditor/SyntaxHighlighter/shCoreDefault.css'},
-    //         {rel: 'stylesheet', href: '/ueditor/themes/iframe.css'}
-    //     ]
-    // },
+      asyncData({
+            params,
+            error
+        }) {
+            return axios
+            .get("/blog/blogTreatise/info/" + params.uuid)
+            .then(res => {
+                if (res.data.data.object == null) {
+                    return error({
+                        statusCode: 404,
+                        message: "对不起，没有找到这个页面"
+                    });
+                }
+                //处理标签，转数组
+                var tags = res.data.data.object.tags;
+                if (tags){
+                    res.data.data.object.tagsList = tags.split(",");
+                }
+                return {
+                    treatiseInfo: res.data.data.object
+                };
+            })
+            .catch(e => {
+                error({
+                statusCode: 500,
+                message: e.message
+                });
+            });
+        },
     layout: 'blog',
     name:'treatiseDetailVue',
     data() {
         return {
             md: new MarkdownIt(),
-            treatiseInfo:{}
         }
     },
     methods:{
-        //查询详情
-        getTreatiseDetail(treatiseUuid) {
-            var self = this;
-            axios.get("/blog/blogTreatise/info/" + treatiseUuid).then((res) => {
-                if (res.data.code == 200) {
-                    var tags = res.data.data.object.tags;
-                    if (tags){
-                        res.data.data.object.tagsList = tags.split(",");
-                    }
-                    self.treatiseInfo = res.data.data.object;
-                    //设置title
-                    self.setTitle();
-                    //设置分享
-                    self.aSocialShare();
-                }
-            });
-        },
         addPraiseNum() {
             var self = this;
             axios.post(
@@ -147,18 +133,6 @@ export default {
             //return this.md.render(val);
             return val;
         },
-        setTitle(){
-            window.document.title = this.treatiseInfo.treatiseTitle + ' - ' + 'Mr · 王的博客';
-        },
-        //百度富文本的代码高亮
-        initDatePicker : function () {
-            //使代码部分高亮显示
-            if(typeof(SyntaxHighlighter) == 'undefined'){
-                
-            }else{
-                SyntaxHighlighter.all();
-            }
-        },
         gitalkComment: function(uuid){
             //gitalk评论
             var gitalk = new Gitalk({
@@ -174,37 +148,107 @@ export default {
         },
         aSocialShare:function(){
             //一键分享
-            var title = this.treatiseInfo.treatiseTitle + ' - ' + 'Mr · 王的博客';
             var $config = {
-                title: title,
+                title: this.title,
                 description: this.treatiseInfo.treatisePreview,
                 sites: ['qzone', 'qq', 'weibo','wechat']
             }
             socialShare('#socialShare', $config);
         }
     },
-    watch:{
-        // treatiseInfo:function(){
-        //     //延迟加载，使代码部分高亮显示
-        //     this.$nextTick(function () {
-        //         this.initDatePicker();
-        //     });
-        // }
-    },
-    created: function () {
-        var uuid = this.$route.params.uuid;
-        //如果传有主键uuid，则加载详情数据
-        if (uuid){
-            //初始化数据
-            this.getTreatiseDetail(uuid);
+    computed: {
+        location_href() {
+            return (
+                (!process.server ? window.location.origin : "https://blog.wwolf.wang") +
+                "/detail/" +
+                this.$route.params.uuid
+            );
+        },
+        title() {
+            return this.treatiseInfo.treatiseTitle + ' - ' + 'Mr · 王的博客';
+        },
+        description() {
+            return this.treatiseInfo.treatisePreview
+                .substring(0, 150)
+                .replace(/\r\n/g, "")
+                .replace(/\n/g, "")
+                .replace(/#+/g, ",") + "...";
         }
     },
     mounted() {
         //加载评论
-        var uuid = this.$route.params.uuid;
-        if (uuid){
-            this.gitalkComment(uuid);
-        }
+        this.gitalkComment(this.$route.params.uuid);
+        //设置分享
+        this.aSocialShare();
+    },
+    head() {
+        let config = {
+            title: this.title,
+            meta: [
+                {
+                    hid: "description",
+                    name: "description",
+                    content: this.description
+                }
+            ],
+            link: [
+                {
+                    rel: "canonical",
+                    href: this.location_href
+                }
+            ],
+            script: [{
+                    type: "application/ld+json",
+                    innerHTML: `{
+                        "@context": "https://ziyuan.baidu.com/contexts/cambrian.jsonld",
+                        "@id": "${this.location_href}",
+                        "appid": "1635145027048045",
+                        "title": "${this.title}",
+                        "pubDate": "${this.treatiseInfo.createTime}",
+                        "upDate": "${this.treatiseInfo.modifyTime || this.treatiseInfo.createTime}"
+                    }`
+                },
+                {
+                    src: "https://c.mipcdn.com/static/v1/mip.js"
+                },
+                {
+                    src: "https://c.mipcdn.com/extensions/platform/v1/mip-cambrian/mip-cambrian.js"
+                }
+            ],
+            __dangerouslyDisableSanitizers: ["script"]
+            };
+            const og = [{
+                property: "og:type",
+                content: "article"
+            },
+            {
+                property: "og:title",
+                content: this.title
+            },
+            {
+                property: "og:description",
+                content: this.description
+            },
+            {
+                property: "og:url",
+                content: this.location_href
+            },
+            {
+                property: "og:site_name",
+                content: "Mr王的博客"
+            }
+            ];
+            const twitter = [{
+                property: "twitter:description",
+                content: this.description
+            },
+            {
+                property: "twitter:title",
+                content: this.title
+            }
+            ];
+            config.meta = config.meta.concat(og, twitter);
+            return config;
     }
 }
 
