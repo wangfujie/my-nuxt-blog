@@ -20,7 +20,7 @@ let config = {
       { 
         hid: 'keywords', 
         name: 'keywords', 
-        content: 'Mr王,Mr·王,Mr · 王的个人博客,Mr王的博客,个人博客,wwolf,blog,wang' },
+        content: 'Mr王,Mr·王,Mr · 王的个人博客,Mr王的博客,个人博客,wwolf,blog,wang,王帅比的博客,王帅比' },
       { 
         hid: 'description', 
         name: 'description', 
@@ -95,8 +95,8 @@ let config = {
     [
       '/blog', 
       { 
-        target: 'https://blog.wwolf.wang', 
-        // target: 'http://127.0.0.1:8088', 
+        // target: 'https://blog.wwolf.wang', 
+        target: 'http://127.0.0.1:8088', 
         changeOrigin: true,
         pathRewrite: { '^/blog' : '/blog' }  //重定向请求路径，防止路由、api路径的冲突
       }
