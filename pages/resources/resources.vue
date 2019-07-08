@@ -65,6 +65,8 @@ export default {
                     res.data.data.list.forEach(item => {
                         if (selectCategory == item.id){
                             item['tagId'] = "thisCategory";
+                            //设置选中类名称为标题
+                            this.comsys.setTheTitle("分类:" + item.categoryName);
                         }else {
                             item['tagId'] = "";
                         }
@@ -108,8 +110,10 @@ export default {
         //获取第一页文章
         this.getTreatiseList(1);
     },
-    mounted() {
-        
+    head() {
+        return {
+            title: this.comsys.getBlogTitle("资源分类")
+        };
     }
 }
 

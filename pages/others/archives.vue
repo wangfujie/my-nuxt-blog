@@ -8,6 +8,10 @@
         </div>
         <div class="archivesTimeLine">
             <el-timeline>
+                <!-- <el-timeline-item>
+                    <span style="font-size: 20px;">总计({{ search.total }})</span>
+                </el-timeline-item> -->
+
                 <el-timeline-item v-for="(item, index) in messages" :key="index" :size='item.type == 1 ? "large":no' 
                 :icon='item.type == 1 ? "el-icon-date":n'
                  color="#38b7ea">
@@ -70,18 +74,15 @@ export default {
                     self.comsys.backToTop();
                 }
             });
-            // axios.get("/blog/blogTreatise/getTimeAxis").then((res) => {
-            //     if (res.data.code == 200) {
-            //         self.messages = res.data.data.list;
-            //     }
-            // });
         }
     },
     created: function () {
         this.initInfo();
     },
-    mounted() {
-        
+    head() {
+        return {
+            title: this.comsys.getBlogTitle("归档")
+        };
     }
 }
 

@@ -85,8 +85,10 @@ export default {
         //获取第一页文章
         this.getTreatiseList(1);
     },
-    mounted() {
-        
+    head() {
+        return {
+            title: this.comsys.getBlogTitle("首页")
+        };
     }
 }
 

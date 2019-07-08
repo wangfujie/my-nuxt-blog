@@ -53,6 +53,15 @@
 import axios from 'axios';
 
 export default {
+    asyncData({
+            params,
+            error
+        }) {
+            return error({
+                        statusCode: 401,
+                        message: "此页暂不开放！"
+                    });
+        },
     layout: 'blog',
     name:'gbookVue',
     data() {
@@ -115,6 +124,11 @@ export default {
     },
     mounted() {
         
+    },
+    head() {
+        return {
+            title: this.comsys.getBlogTitle("留言")
+        };
     }
 }
 

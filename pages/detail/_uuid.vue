@@ -165,7 +165,7 @@ export default {
             );
         },
         title() {
-            return this.treatiseInfo.treatiseTitle + ' - ' + 'Mr · 王的博客';
+            return this.comsys.getBlogTitle("this.treatiseInfo.treatiseTitle");
         },
         description() {
             return this.treatiseInfo.treatisePreview

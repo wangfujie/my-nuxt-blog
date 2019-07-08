@@ -81,6 +81,11 @@ export default {
     },
     mounted() {
         
+    },
+    head() {
+        return {
+            title: this.comsys.getBlogTitle("标签:" + this.$route.query.tagName)
+        };
     }
 }
 

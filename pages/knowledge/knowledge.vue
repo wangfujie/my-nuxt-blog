@@ -69,6 +69,8 @@ export default {
                     res.data.data.list.forEach(item => {
                         if (selectCategory == item.id){
                             item['tagId'] = "thisCategory";
+                            //设置选中类名称为标题
+                            this.comsys.setTheTitle("分类:" + item.categoryName);
                         }else {
                             item['tagId'] = "";
                         }
@@ -115,6 +117,11 @@ export default {
     },
     mounted() {
         
+    },
+    head() {
+        return {
+            title: this.comsys.getBlogTitle("技术分类")
+        };
     }
 }
 
