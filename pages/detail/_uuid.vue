@@ -165,7 +165,7 @@ export default {
             );
         },
         title() {
-            return this.comsys.getBlogTitle("this.treatiseInfo.treatiseTitle");
+            return this.comsys.getBlogTitle(this.treatiseInfo.treatiseTitle);
         },
         description() {
             return this.treatiseInfo.treatisePreview
