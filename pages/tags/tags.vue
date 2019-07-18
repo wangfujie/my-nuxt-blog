@@ -6,7 +6,7 @@
         <div class="archivesTimeLine">
             <el-timeline>
                 <el-timeline-item size="large" icon="el-icon-collection">
-                    <span style="font-size: 20px;">{{ search.tagInfo }}</span>
+                    <span style="font-size: 20px;">{{ search.tagInfo }} ( {{ search.total }} )</span>
                 </el-timeline-item>
                 <el-timeline-item v-for="(treatise, index) in treatiseList" :key="index" color="#38b7ea">
                     <el-card>

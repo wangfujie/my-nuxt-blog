@@ -9,10 +9,11 @@
                     <el-col :span="12">
                         <el-image src="/images/qrcode_wechat.jpg" style="width: 150px; height: 150px" fit="cover"></el-image>
                     </el-col>
-                    <el-col :span="12" style="margin-top: 10px;line-height: 45px; color: #sadas;">
+                    <el-col :span="12" style="margin-top: 10px;line-height: 35px; color: #sadas;">
                         <b>{{ aboutMeInfo.myName }}</b>
                         <p><b>已运行：{{ runTime }}</b></p>
-                        <b><span>访问：{{ aboutMeInfo.browseTotal }}</span></b>
+                        <p><b>总访问量：{{ aboutMeInfo.browseTotal }}</b></p>
+                        <p><b>今日访问量：{{ aboutMeInfo.todayBrowse }}</b></p>
                     </el-col>
                 </el-row>
 
@@ -117,6 +118,7 @@ export default {
                 if (res.data.code == 200) {
                     self.aboutMeInfo = res.data.data.object;
                     self.aboutMeInfo.browseTotal = res.data.browseTotal;
+                    self.aboutMeInfo.todayBrowse = res.data.todayBrowse;
                 }
             });
         }
