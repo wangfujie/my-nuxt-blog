@@ -9,7 +9,7 @@
                     <el-col :span="12">
                         <el-image src="/images/qrcode_wechat.jpg" style="width: 150px; height: 150px" fit="cover"></el-image>
                     </el-col>
-                    <el-col :span="12" style="margin-top: 10px;line-height: 35px; color: #sadas;">
+                    <el-col :span="12" style="margin-top: 6px;line-height: 35px; color: #sadas;">
                         <b>{{ aboutMeInfo.myName }}</b>
                         <p><b>已运行：{{ runTime }}</b></p>
                         <p><b>总访问量：{{ aboutMeInfo.browseTotal }}</b></p>
