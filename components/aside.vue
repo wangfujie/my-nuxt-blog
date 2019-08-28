@@ -1,15 +1,17 @@
 <template>
     <aside class="right_aside">
-        <div class="aside_box">
-            <h2 class="hometitle">关于</h2>
-            <div style="padding: 8px;">
+        <el-card class="box-card">
+            <div slot="header" class="clearfix">
+                <b>关于</b>
+            </div>
+            <div class="text" >
                 <!-- <p>博主：{{ aboutMeInfo.myName }}</p> -->
                 <!-- <p>简介：{{ aboutMeInfo.aboutMe }}</p> -->
                 <el-row >
                     <el-col :span="12">
                         <el-image src="/images/qrcode_wechat.jpg" style="width: 150px; height: 150px" fit="cover"></el-image>
                     </el-col>
-                    <el-col :span="12" style="margin-top: 6px;line-height: 35px; color: #sadas;">
+                    <el-col :span="12" style="margin-top: 6px; color: #sadas;">
                         <b>{{ aboutMeInfo.myName }}</b>
                         <p><b>已运行：{{ runTime }}</b></p>
                         <p><b>总访问量：{{ aboutMeInfo.browseTotal }}</b></p>
@@ -33,37 +35,58 @@
                     </el-col>
                 </el-row>
             </div>
-        </div>
-        <div class="aside_box">
-            <h2 class="hometitle">推荐</h2>
-            <ul class="news">
-                <li v-for="(recommend, index) in recommendList" :key="index">
-                    <nuxt-link :to="'/detail/' + recommend.uuid" :title="recommend.treatiseTitle">{{ recommend.treatiseTitle }}</nuxt-link>
-                </li>
-            </ul>
-        </div>
-        <div class="aside_box">
-            <h2 class="hometitle">标签云</h2>
-            <ul class="cloud">
-                <nuxt-link v-for="(tag, index) in tagList" :key="index" :to="'/tags/tags?tagName=' + tag.tagName" target="_blank" >{{ tag.tagName }}</nuxt-link>
-            </ul>
-        </div>
-        <div class="aside_box">
-            <h2 class="hometitle">阅读排行</h2>
-            <ul class="news">
-                <li v-for="(ranking, index) in readRanking" :key="index" >
-                    <nuxt-link :to="'/detail/' + ranking.uuid" :title="ranking.treatiseTitle">{{ ranking.treatiseTitle }}</nuxt-link>
-                </li>
-            </ul>
-        </div>
-        <div class="aside_box">
-            <h2 class="hometitle">友情链接</h2>
-            <ul class="links">
-                <li v-for="(link, index) in friendLinks" :key="index" >
-                    <a :href="link.linkUrl" :title="link.linkTitle" target="_blank">{{ link.linkTitle }}</a>
-                </li>
-            </ul>
-        </div>
+        </el-card>
+
+        <el-card class="box-card">
+            <div slot="header" class="clearfix">
+                <b>推荐</b>
+            </div>
+            <div class="text item">
+                <ul class="news">
+                    <li v-for="(recommend, index) in recommendList" :key="index">
+                        <nuxt-link :to="'/detail/' + recommend.uuid" :title="recommend.treatiseTitle">{{ recommend.treatiseTitle }}</nuxt-link>
+                    </li>
+                </ul>
+            </div>
+        </el-card>
+
+        <el-card class="box-card">
+            <div slot="header" class="clearfix">
+                <b>标签云</b>
+            </div>
+            <div class="text item">
+                <ul class="cloud">
+                    <nuxt-link v-for="(tag, index) in tagList" :key="index" :to="'/tags/tags?tagName=' + tag.tagName" target="_blank" >{{ tag.tagName }}</nuxt-link>
+                </ul>
+            </div>
+            
+        </el-card>
+
+        <el-card class="box-card">
+            <div slot="header" class="clearfix">
+                <b>阅读排行</b>
+            </div>
+            <div class="text item">
+                <ul class="news">
+                    <li v-for="(ranking, index) in readRanking" :key="index" >
+                        <nuxt-link :to="'/detail/' + ranking.uuid" :title="ranking.treatiseTitle">{{ ranking.treatiseTitle }}</nuxt-link>
+                    </li>
+                </ul>
+            </div>
+        </el-card>
+
+        <el-card class="box-card">
+            <div slot="header" class="clearfix">
+                <b>友情链接</b>
+            </div>
+            <div class="text item">
+                <ul class="links">
+                    <li v-for="(link, index) in friendLinks" :key="index" >
+                        <a :href="link.linkUrl" :title="link.linkTitle" target="_blank">{{ link.linkTitle }}</a>
+                    </li>
+                </ul>
+            </div>
+        </el-card>
     </aside>
 </template>
 

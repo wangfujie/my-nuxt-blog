@@ -125,12 +125,10 @@ export default {
                         type: 'warning'
                     });
                 }
-            }).fail((val) => {
-                this.$message.error('您点的太快了！不能太快哦！');
             });
         },
         formatEditormd(val) {
-            //return this.md.render(val);
+            // return this.md.render(val);
             return val;
         },
         gitalkComment: function(uuid){
@@ -165,6 +163,8 @@ export default {
             );
         },
         title() {
+            //设置标题
+            this.comsys.setTheTitle(this.treatiseInfo.treatiseTitle);
             return this.comsys.getBlogTitle(this.treatiseInfo.treatiseTitle);
         },
         description() {
@@ -183,76 +183,53 @@ export default {
     },
     head() {
         let config = {
-            title: this.title,
-            meta: [
-                {
-                    hid: "description",
-                    name: "description",
-                    content: this.description
-                }
-            ],
-            link: [
-                {
-                    rel: "canonical",
-                    href: this.location_href
-                }
-            ],
-            script: [{
-                    type: "application/ld+json",
-                    innerHTML: `{
-                        "@context": "https://ziyuan.baidu.com/contexts/cambrian.jsonld",
-                        "@id": "${this.location_href}",
-                        "appid": "1635145027048045",
-                        "title": "${this.title}",
-                        "pubDate": "${this.treatiseInfo.createTime}",
-                        "upDate": "${this.treatiseInfo.modifyTime || this.treatiseInfo.createTime}"
-                    }`
-                },
-                {
-                    src: "https://c.mipcdn.com/static/v1/mip.js"
-                },
-                {
-                    src: "https://c.mipcdn.com/extensions/platform/v1/mip-cambrian/mip-cambrian.js"
-                },
-                {
-                    src: "https://zz.bdstatic.com/linksubmit/push.js"
-                }
-            ],
-            __dangerouslyDisableSanitizers: ["script"]
+                title: this.title,
+                meta: [
+                    {
+                        hid: "description",
+                        name: "description",
+                        content: this.description
+                    }
+                ],
+                link: [
+                    {
+                        rel: "canonical",
+                        href: this.location_href
+                    }
+                ]
             };
             const og = [{
-                property: "og:type",
-                content: "article"
-            },
-            {
-                property: "og:title",
-                content: this.title
-            },
-            {
-                property: "og:description",
-                content: this.description
-            },
-            {
-                property: "og:url",
-                content: this.location_href
-            },
-            {
-                property: "og:site_name",
-                content: "Mr王的博客"
-            }
+                    property: "og:type",
+                    content: "article"
+                },
+                {
+                    property: "og:title",
+                    content: this.title
+                },
+                {
+                    property: "og:description",
+                    content: this.description
+                },
+                {
+                    property: "og:url",
+                    content: this.location_href
+                },
+                {
+                    property: "og:site_name",
+                    content: "Mr王的博客"
+                }
             ];
             const twitter = [{
-                property: "twitter:description",
-                content: this.description
-            },
-            {
-                property: "twitter:title",
-                content: this.title
-            }
+                    property: "twitter:description",
+                    content: this.description
+                },
+                {
+                    property: "twitter:title",
+                    content: this.title
+                }
             ];
             config.meta = config.meta.concat(og, twitter);
             return config;
     }
 }
-
 </script>

@@ -1,13 +1,13 @@
 <template>
-  <div>
+  <div class="bodyDiv">
       <Header/>
       <div>
         <Aside/>
         <nuxt />
         <BackToTop/>
       </div>
-      <Footer/>
       <Gitter/>
+      <Footer/>
   </div>
 </template>
 
@@ -31,9 +31,9 @@ export default {
 </script>
 
 <style>
-* {
+.bodyDiv {
     margin: 0;
-    padding: 0
+    padding: 0;
 }
 
 body {
@@ -41,6 +41,12 @@ body {
     color: #333;
     background: #F1F1F1;
     line-height: 1.5;
+    margin: 0;
+    padding: 0;
+}
+
+.el-card__header {
+    padding: 10px 20px;
 }
 
 .el-menu--horizontal>.el-menu-item,.el-menu--horizontal>.el-submenu .el-submenu__title,.el-menu--horizontal .el-menu .el-menu-item{
@@ -53,7 +59,6 @@ img {
     display: block
 }
 
-/* ul, li { list-style: none; } */
 .news_con li, .news_con ol {
     margin: 1em;
 }
@@ -108,6 +113,8 @@ a:hover {
 .logo h1 {
     font-size: 26px;
     float: left;
+    margin: 0;
+    padding: 0;
     margin-left: 15px;
 }
 
@@ -132,6 +139,14 @@ a:hover {
     margin: 16px 16px 16px 0;
 }
 
+.right_aside .box-card{
+    margin-bottom: 15px;
+}
+
+.right_aside .box-card .el-card__body{
+    padding: 5px 0 5px 1px;
+}
+
 .aside_box {
     border: #ddd 1px solid;
     background: #fff;
@@ -140,17 +155,9 @@ a:hover {
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 }
 
-.hometitle {
-    background: #f8f8f8;
-    font-size: 15px;
-    padding-left: 20px;
-    border-bottom: 1px solid #ddd;
-    height: 38px;
-    line-height: 38px;
-}
-
 .news {
-    padding: 10px
+    padding: 0 10px 0 10px;
+    margin-top: 0;
 }
 
 .news li, .links li {
@@ -252,19 +259,23 @@ main {
     overflow: hidden;
 }
 
+.bloglist ul {
+    padding: 0;
+}
+
 .bloglist li {
-    /* background: #FFF;
-    overflow: hidden; */
-    padding: 16px;
-    /* border: #ddd 1px solid;
-    margin-bottom: 16px;
-    position: relative;
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12); */
+    list-style-type:none;
+    padding-bottom: 20px;
+}
+
+.bloglist li .el-card__body {
+    padding: 0 17px 3px 3px;
 }
 
 .bloglist li h2 {
     font-size: 18px;
     margin-bottom: 10px;
+    margin-top: 0;
 }
 
 .bloglist li h2 span {
@@ -338,7 +349,7 @@ main {
 .place {
     overflow: hidden;
     background: #fff;
-    margin: 10px 15px;
+    margin: 15px 0 5px 0;
     border: #ddd 1px solid;
     padding: 5px 10px
 }
@@ -403,9 +414,9 @@ main {
     padding: 0 5px;
 }
 
-.archivesTimeLine {
+/* .archivesTimeLine {
     margin: 10px 15px;
-}
+} */
 
 .news_about {
     color: #888888;
@@ -471,36 +482,6 @@ main {
 
 .nextinfo p a,i {
     color: #2479cc;
-}
-
-/*otherlink*/
-.otherlink {
-    width: 100%;
-    overflow: hidden;
-}
-
-.otherlink h2 {
-    border-bottom: #000 2px solid;
-    line-height: 40px;
-    font-size: 14px;
-    color: #000
-}
-
-.otherlink ul {
-    margin: 10px 0
-}
-
-.otherlink li {
-    line-height: 24px;
-    height: 24px;
-    display: block;
-    width: 100%;
-    overflow: hidden;
-}
-
-.otherlink li a:hover {
-    text-decoration: none;
-    color: #F4650E
 }
 
 .news_pl h2 {
@@ -637,23 +618,6 @@ p.fbtime {
     margin: 10px 0;
 }
 
-.fb ul {
-    margin: 10px 10px;
-    padding: 10px 40px 10px 70px;
-    border-bottom: #ececec 1px solid;
-}
-
-.replyDiv ul {
-    padding: 10px 20px;
-    background: #f9f9f9;
-}
-
-.replyDiv {
-    margin: 0 20px;
-    padding-bottom: 20px;
-    border-bottom: #dedddd 1px dashed;
-}
-
 textarea#messageContent {
     width: 100%;
 }
@@ -677,15 +641,11 @@ media
         margin: 0
     }
 
-    .piclistshow ul li {
-        width: 33.3%;
-    }
-
     .gbinfos {
         padding: 10px
     }
 
-    .bloglist li, .place, .address, .piclistshow, .gbinfos, .timebox {
+    .bloglist li, .place, .address, .gbinfos, .timebox {
         border: none
     }
 
@@ -724,27 +684,11 @@ media
         margin: 0
     }
 
-    .piclistshow {
-        padding: 10px
-    }
-
-    .piclistshow ul li {
-        width: 50%;
-    }
-
-    .piclistshow ul:before {
-        left: 10px;
-    }
-
-    .piclistshow ul:after {
-        bottom: 10px;
-    }
-
     .gbinfos {
         padding: 10px
     }
 
-    .bloglist li, .place, .address, .piclistshow, .gbinfos, .timebox {
+    .bloglist li, .place, .address, .gbinfos, .timebox {
         border: none
     }
 
@@ -766,10 +710,6 @@ media
         overflow: hidden;
         background: none;
         padding-bottom: 0
-    }
-
-    .fb ul {
-        padding: 10px 10px 10px 70px;
     }
 
     .address {
@@ -798,6 +738,10 @@ media
 
 .praise a {
     color: #fff;
+}
+
+.el-timeline {
+    padding-left: 10px;
 }
 
 .el-timeline-item__node--large{
