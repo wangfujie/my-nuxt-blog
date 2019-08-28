@@ -405,7 +405,7 @@ main {
 .address {
     overflow: hidden;
     background: #fff;
-    margin: 10px 15px;
+    margin: 15px 0 5px 0;
     border: #ddd 1px solid;
     padding: 5px 10px;
 }
