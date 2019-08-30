@@ -1,19 +1,15 @@
-const pkg = require('./package')
-
+const pkg = require('./package');
 
 let config = {
 
-  env:{
-    baseUrl: process.env.baseUrl
-  },
+  // env:{
+  //   baseUrl: process.env.baseUrl
+  // },
 
   mode: 'spa',
 
-  /*
-  ** Headers of the page
-  */
   head: {
-    title: 'Mr王的个人博客',
+    // title: 'Mr王的个人博客',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -62,7 +58,8 @@ let config = {
   ** Global CSS
   */
   css: [
-    'element-ui/lib/theme-chalk/index.css'
+    'element-ui/lib/theme-chalk/index.css',
+    '~assets/css/blog_all.css'
   ],
 
   /*
@@ -95,8 +92,8 @@ let config = {
     [
       '/blog', 
       { 
-        // target: 'https://blog.wwolf.wang', 
-        target: 'http://127.0.0.1:8088', 
+        target: 'https://blog.wwolf.wang', 
+        // target: 'http://127.0.0.1:8088', 
         changeOrigin: true,
         pathRewrite: { '^/blog' : '/blog' }  //重定向请求路径，防止路由、api路径的冲突
       }
@@ -106,6 +103,8 @@ let config = {
   ** Build configuration
   */
   build: {
+    vendor: ['axios', 'element-ui', 'web-storage-cache', 'moment'],
+    extractCSS: true,
     /*
     ** You can extend webpack config here
     */
@@ -115,9 +114,9 @@ let config = {
 }
 
 // let css = [
-//   '/editor/highlightjs/styles/github.min.css',
-//   '/editor/markdown/github-markdown.min.css',
-//   '/editor/katex/katex.min.css'
+//   'gitalk/dist/gitalk.css',
+//   'mavon-editor/dist/highlightjs/styles/tomorrow-night-eighties.min.css',
+//   'social-share.js/dist/css/share.min.css'
 // ]
 
 // css.map(href => {
