@@ -92,8 +92,8 @@ let config = {
     [
       '/blog', 
       { 
-        target: 'https://blog.wwolf.wang', 
-        // target: 'http://127.0.0.1:8088', 
+        // target: 'https://blog.wwolf.wang', 
+        target: 'http://127.0.0.1:8088', 
         changeOrigin: true,
         pathRewrite: { '^/blog' : '/blog' }  //重定向请求路径，防止路由、api路径的冲突
       }
