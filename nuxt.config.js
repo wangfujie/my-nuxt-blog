@@ -79,9 +79,14 @@ let config = {
   ** Nuxt.js modules
   */
   modules: [
+    '@nuxtjs/google-adsense',
     '@nuxtjs/axios',
     '@nuxtjs/proxy' //添加proxy模块
   ],
+
+  'google-adsense': {
+    id: 'ca-pub-5986732081406641'
+  },
 
   axios: {
     proxy: true, // 开启proxy
@@ -92,8 +97,8 @@ let config = {
     [
       '/blog', 
       { 
-        // target: 'https://blog.wwolf.wang', 
-        target: 'http://127.0.0.1:8088', 
+        target: 'https://blog.wwolf.wang', 
+        // target: 'http://127.0.0.1:8088', 
         changeOrigin: true,
         pathRewrite: { '^/blog' : '/blog' }  //重定向请求路径，防止路由、api路径的冲突
       }

@@ -201,26 +201,7 @@ export default {
                         rel: "canonical",
                         href: this.location_href
                     }
-                ],
-                script: [{
-                        type: "application/ld+json",
-                        innerHTML: `        {
-                            "@context": "https://ziyuan.baidu.com/contexts/cambrian.jsonld",
-                            "@id": "${this.location_href}",
-                            "appid": "1595463988626710",
-                            "title": "${this.title}",
-                            "pubDate": "${this.treatiseInfo.createTime}",
-                            "upDate": "${this.treatiseInfo.createTime}"
-                        }`
-                    },
-                    {
-                        src: "https://c.mipcdn.com/static/v1/mip.js"
-                    },
-                    {
-                        src: "https://c.mipcdn.com/extensions/platform/v1/mip-cambrian/mip-cambrian.js"
-                    }
-                ],
-                __dangerouslyDisableSanitizers: ["script"]
+                ]
             };
             const og = [{
                     property: "og:type",
