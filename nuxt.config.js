@@ -2,14 +2,10 @@ const pkg = require('./package');
 
 let config = {
 
-  // env:{
-  //   baseUrl: process.env.baseUrl
-  // },
-
-  mode: 'spa',
+  mode: 'universal',
 
   head: {
-    // title: 'Mr王的个人博客',
+    title: 'Mr王的个人博客',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },

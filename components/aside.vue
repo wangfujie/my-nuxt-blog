@@ -101,6 +101,29 @@
 import axios from 'axios';
 
 export default {
+    // async asyncData(){
+    //     //推荐
+    //     let {recommendData} = await axios.get("/blog/blogTreatise/getRecommend");
+    //     //标签云
+    //     let {tagsData} = await axios.get("/blog/blogTags/getShowTags");
+    //     //阅读排行，10条
+    //     let {rankingData} = await axios.get("/blog/blogTreatise/getReadRanking");
+    //     //友情链接查询
+    //     let {linkData} = await axios.get("/blog/blogFriendlyLinks/list");
+    //     //查询关于我信息
+    //     let {meInfoData} = await axios.get("/blog/blogAboutMe/info/1");
+    //     return{
+    //         recommendList: recommendData.data.list,
+    //         tagList: tagsData.data.list,
+    //         readRanking: rankingData.page.records,
+    //         friendLinks: linkData.page.records,
+    //         aboutMeInfo: meInfoData.data.object,
+    //         aboutMeInfo:{
+    //             browseTotal: meInfoData.browseTotal,
+    //             todayBrowse: meInfoData.todayBrowse
+    //         }
+    //     }
+    // },
     data(){
         return{
             recommendList:[],

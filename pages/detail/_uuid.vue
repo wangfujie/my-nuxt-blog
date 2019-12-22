@@ -74,7 +74,7 @@ import Gitalk from 'gitalk';
 // const MarkdownIt = require("markdown-it");
 
 export default {
-      asyncData({
+       asyncData({
             params,
             error
         }) {
@@ -106,6 +106,26 @@ export default {
         },
     layout: 'blog',
     name:'treatiseDetailVue',
+    // async asyncData({ params, $axios, error }){
+    //     // let {data} = await $axios.get("/blog/blogTreatise/list");
+    //     let {data} = await $axios.get("/blog/blogTreatise/info/" + params.uuid);
+    //     if (data.data.object == null) {
+    //         return error({
+    //             statusCode: 404,
+    //             message: "对不起，没有找到这个页面"
+    //         });
+    //     }
+    //     //处理标签，转数组
+    //     var tags = data.data.object.tags;
+    //     if (tags){
+    //         data.data.object.tagsList = tags.split(",");
+    //     }
+    //     return {
+    //         treatiseInfo: data.data.object,
+    //         loading: false
+    //     }
+    // },
+                
     data() {
         return {
             // md: new MarkdownIt(),
