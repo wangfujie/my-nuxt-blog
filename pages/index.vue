@@ -60,8 +60,8 @@ import axios from 'axios';
 export default {
     layout: 'blog',
     name:'index',
-    async asyncData(){
-        let {data} = await axios.get("/blog/blogTreatise/list");
+    async asyncData({ $axios }){
+        let {data} = await $axios.get("/blog/blogTreatise/list");
         return {
             treatiseList: data.data.page.records,
             search:{
@@ -110,7 +110,7 @@ export default {
     },
     created: function () {
         //浏览记录
-        // this.addRecord();
+        this.addRecord();
         //获取第一页文章
         // this.getTreatiseList(1);
     },
