@@ -20,3 +20,8 @@ $ npm run generate
 ```
 
 For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
+
+# 部署
+npm run build
+pm2 start npm -- run start
+pm2 list
