@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+// import axios from 'axios';
 
 export default {
     layout: 'blog',
@@ -60,7 +60,7 @@ export default {
         getTreatiseList(currentPage) {
             this.search.currentPage = currentPage;
             var self = this;
-            axios.get("/blog/blogTreatise/list", {params: self.search}).then((res) => {
+            this.$axios.get("/blog/blogTreatise/list", {params: self.search}).then((res) => {
                 if (res.data.code == 200){
                     self.treatiseList = res.data.data.page.records;
                     self.search.total = res.data.data.page.total;
@@ -73,14 +73,11 @@ export default {
             });
         }
     },
-    created: function () {
+    mounted: function () {
         var tagName = this.$route.query.tagName;
         this.search.tagInfo = tagName;
         //获取第一页文章
         this.getTreatiseList(1);
-    },
-    mounted() {
-        
     },
     head() {
         return {

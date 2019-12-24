@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+// import axios from 'axios';
 
 export default {
     layout: 'blog',
@@ -66,7 +66,7 @@ export default {
             var self = this;
 
             //查询归档数据
-            axios.get("/blog/blogTreatise/getTimeAxis", {params: self.search}).then((res) => {
+            this.$axios.get("/blog/blogTreatise/getTimeAxis", {params: self.search}).then((res) => {
                 if (res.data.code == 200){
                     self.messages = res.data.data.page.records;
                     self.search.total = res.data.data.page.total;
@@ -76,7 +76,7 @@ export default {
             });
         }
     },
-    created: function () {
+    mounted: function () {
         this.initInfo();
     },
     head() {

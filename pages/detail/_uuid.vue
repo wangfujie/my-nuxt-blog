@@ -65,7 +65,7 @@
 </style>
 
 <script>
-import axios from 'axios';
+// import axios from 'axios';
 import 'gitalk/dist/gitalk.css';
 import 'mavon-editor/dist/highlightjs/styles/tomorrow-night-eighties.min.css';
 // import 'social-share.js/dist/css/share.min.css';
@@ -74,37 +74,6 @@ import Gitalk from 'gitalk';
 // const MarkdownIt = require("markdown-it");
 
 export default {
-    // asyncData({
-    //     $axios,
-    //     params,
-    //     error
-    // }) {
-    //     return $axios
-    //     .get("/blog/blogTreatise/info/" + params.uuid)
-    //     .then(res => {
-    //         if (res.data.data.object == null) {
-    //             return error({
-    //                 statusCode: 404,
-    //                 message: "对不起，没有找到这个页面"
-    //             });
-    //         }
-    //         //处理标签，转数组
-    //         var tags = res.data.data.object.tags;
-    //         if (tags){
-    //             res.data.data.object.tagsList = tags.split(",");
-    //         }
-    //         return {
-    //             treatiseInfo: res.data.data.object,
-    //             loading: false
-    //         };
-    //     })
-    //     .catch(e => {
-    //         error({
-    //         statusCode: 500,
-    //         message: e.message
-    //         });
-    //     });
-    // },
     layout: 'blog',
     name:'treatiseDetailVue',
     async asyncData({ params, $axios, error }){
@@ -134,8 +103,7 @@ export default {
     methods:{
         addPraiseNum() {
             var self = this;
-            axios.post(
-                    "/blog/blogLogRecord/addRecord", 
+            this.$axios.post("/blog/blogLogRecord/addRecord", 
                     {"recordType": 1, "treatiseUuid":self.treatiseInfo.uuid}
                 ).then((res) => {
                 if (res.data.code == 200) {
@@ -199,7 +167,7 @@ export default {
                 .replace(/#+/g, ",") + "...";
         }
     },
-    mounted() {
+    mounted: function() {
         //加载评论
         this.gitalkComment(this.$route.params.uuid);
         //设置分享

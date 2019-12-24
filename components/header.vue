@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+// import axios from 'axios';
 
 export default {
     data(){
@@ -45,7 +45,7 @@ export default {
             var self = this;
 
             //获取公共头菜单列表
-            axios.get("/blog/blogCategory/getBlogMenuNode").then((res) => {
+            this.$axios.get("/blog/blogCategory/getBlogMenuNode").then((res) => {
                 if (res.data.code == 200){
                     self.headMenu = res.data.data.list;
                 }
@@ -57,7 +57,7 @@ export default {
             window.open(linkUrl);
         }
     },
-    created: function () {
+    mounted: function () {
         //获取公共部分数据初始数据
         this.initInfo();
     }

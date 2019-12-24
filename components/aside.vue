@@ -98,30 +98,30 @@
 </template>
 
 <script>
-import axios from 'axios';
+// import axios from 'axios';
 
 export default {
-    // async asyncData(){
+    // async asyncData({ $axios }){
     //     //推荐
-    //     let {recommendData} = await axios.get("/blog/blogTreatise/getRecommend");
+    //     let {recommendData} = await $axios.$get("/blog/blogTreatise/getRecommend");
     //     //标签云
-    //     let {tagsData} = await axios.get("/blog/blogTags/getShowTags");
+    //     let {tagsData} = await $axios.get("/blog/blogTags/getShowTags");
     //     //阅读排行，10条
-    //     let {rankingData} = await axios.get("/blog/blogTreatise/getReadRanking");
+    //     let {rankingData} = await $axios.get("/blog/blogTreatise/getReadRanking");
     //     //友情链接查询
-    //     let {linkData} = await axios.get("/blog/blogFriendlyLinks/list");
+    //     let {linkData} = await $axios.get("/blog/blogFriendlyLinks/list");
     //     //查询关于我信息
-    //     let {meInfoData} = await axios.get("/blog/blogAboutMe/info/1");
+    //     let {meInfoData} = await $axios.get("/blog/blogAboutMe/info/1");
+        
+    //     // browseTotal: meInfoData.browseTotal,
+    //     // todayBrowse: meInfoData.todayBrowse
+            
     //     return{
     //         recommendList: recommendData.data.list,
     //         tagList: tagsData.data.list,
     //         readRanking: rankingData.page.records,
     //         friendLinks: linkData.page.records,
-    //         aboutMeInfo: meInfoData.data.object,
-    //         aboutMeInfo:{
-    //             browseTotal: meInfoData.browseTotal,
-    //             todayBrowse: meInfoData.todayBrowse
-    //         }
+    //         aboutMeInfo: meInfoData.data.object
     //     }
     // },
     data(){
@@ -139,35 +139,35 @@ export default {
             var self = this;
 
             // 推荐
-            axios.get("/blog/blogTreatise/getRecommend").then((res) => {
+            this.$axios.get("/blog/blogTreatise/getRecommend").then((res) => {
                 if (res.data.code == 200){
                     self.recommendList = res.data.data.list;
                 }
             });
         
             //标签云
-            axios.get("/blog/blogTags/getShowTags").then((res) => {
+            this.$axios.get("/blog/blogTags/getShowTags").then((res) => {
                 if (res.data.code == 200){
                     self.tagList = res.data.data.list;
                 }
             });
 
             //阅读排行，10条
-            axios.get("/blog/blogTreatise/getReadRanking").then((res) => {
+            this.$axios.get("/blog/blogTreatise/getReadRanking").then((res) => {
                 if (res.data.code == 200){
                     self.readRanking = res.data.data.page.records;
                 }
             });
 
             // 友情链接查询
-            axios.get("/blog/blogFriendlyLinks/list").then((res) => {
+            this.$axios.get("/blog/blogFriendlyLinks/list").then((res) => {
                 if (res.data.code == 200){
                     self.friendLinks = res.data.data.page.records;
                 }
             });
 
             //查询关于我信息
-            axios.get("/blog/blogAboutMe/info/1").then((res) => {
+            this.$axios.get("/blog/blogAboutMe/info/1").then((res) => {
                 if (res.data.code == 200) {
                     self.aboutMeInfo = res.data.data.object;
                     self.aboutMeInfo.browseTotal = res.data.browseTotal;
@@ -176,11 +176,9 @@ export default {
             });
         }
     },
-    created: function () {
+    mounted: function () {
         //获取侧边栏部分的数据
         this.initInfo();
-    },
-    mounted() {
         var self = this;
         setTimeout(function() {
             self.runTime = self.comsys.timeFn(self.aboutMeInfo.domainTime);

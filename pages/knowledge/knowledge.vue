@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+// import axios from 'axios';
 
 export default {
     layout: 'blog',
@@ -64,7 +64,7 @@ export default {
         //获取分类
         getCategoryList(selectCategory){
             var self = this;
-            axios.get("/blog/blogCategory/getCategoryList", {params: {"categoryId":self.categoryFid}}).then((res) => {
+            this.$axios.get("/blog/blogCategory/getCategoryList", {params: {"categoryId":self.categoryFid}}).then((res) => {
                 if (res.data.code == 200) {
                     res.data.data.list.forEach(item => {
                         if (selectCategory == item.id){
@@ -84,7 +84,7 @@ export default {
         getTreatiseList(currentPage) {
             this.search.currentPage = currentPage;
             var self = this;
-            axios.get("/blog/blogTreatise/list", {params: self.search}).then((res) => {
+            this.$axios.get("/blog/blogTreatise/list", {params: self.search}).then((res) => {
                 if (res.data.code == 200){
                     self.treatiseList = res.data.data.page.records;
                     self.search.total = res.data.data.page.total;
@@ -103,7 +103,7 @@ export default {
             this.getTreatiseList(1);
         }
     },
-    created: function () {
+    mounted: function () {
         var categoryId = this.$route.query.categoryId;
         if(categoryId){
             this.categoryFid = categoryId;
@@ -114,9 +114,6 @@ export default {
         this.getCategoryList(thisCategoryId);
         //获取第一页文章
         this.getTreatiseList(1);
-    },
-    mounted() {
-        
     },
     head() {
         return {

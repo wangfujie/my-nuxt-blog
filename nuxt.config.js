@@ -76,8 +76,7 @@ let config = {
   */
   modules: [
     '@nuxtjs/google-adsense',
-    '@nuxtjs/axios',
-    '@nuxtjs/proxy' //添加proxy模块
+    '@nuxtjs/axios'
   ],
 
   'google-adsense': {
@@ -91,7 +90,7 @@ let config = {
 
   proxy: [
     [
-      '/blog', 
+      '/blog/', 
       { 
         target: 'https://blog.wwolf.wang', 
         // target: 'http://127.0.0.1:8088', 
