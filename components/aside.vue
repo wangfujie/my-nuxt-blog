@@ -176,7 +176,7 @@ export default {
             });
         }
     },
-    mounted: function () {
+    created: function () {
         //获取侧边栏部分的数据
         this.initInfo();
         var self = this;

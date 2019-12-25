@@ -57,7 +57,7 @@ export default {
             window.open(linkUrl);
         }
     },
-    mounted: function () {
+    created: function () {
         //获取公共部分数据初始数据
         this.initInfo();
     }
