@@ -62,15 +62,18 @@ let config = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '@/plugins/element-ui',
+    '~plugins/element-ui',
     '~plugins/highlight',
     '~plugins/mavonEditor',
     {
       src:'~/plugins/axios'
     },
-    '@/plugins/commom'
+    '~plugins/commom',
+    '~plugins/loading',
   ],
-
+  loading: {
+    color: '#29d'
+  },
   /*
   ** Nuxt.js modules
   */
@@ -79,9 +82,9 @@ let config = {
     '@nuxtjs/axios'
   ],
 
-  'google-adsense': {
-    id: 'ca-pub-5986732081406641'
-  },
+  // 'google-adsense': {
+  //   id: 'ca-pub-5986732081406641'
+  // },
 
   axios: {
     proxy: true, // 开启proxy
