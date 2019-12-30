@@ -82,9 +82,9 @@ let config = {
     '@nuxtjs/axios'
   ],
 
-  // 'google-adsense': {
-  //   id: 'ca-pub-5986732081406641'
-  // },
+  'google-adsense': {
+    id: 'ca-pub-5986732081406641'
+  },
 
   axios: {
     proxy: true, // 开启proxy
